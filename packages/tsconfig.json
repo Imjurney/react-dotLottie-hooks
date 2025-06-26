@@ -1,0 +1,3 @@
+{
+  "extends": "../../tsconfig.base.json" // Make sure this file exists at the specified path, or update the path accordingly.
+}

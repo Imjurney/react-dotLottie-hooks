@@ -1,0 +1,13 @@
+node_modules
+dist
+build
+
+.vscode
+.DS_Store
+*.log
+*.env
+coverage
+public
+dist
+pnpm-lock.yaml
+pnpm-workspace.yaml
