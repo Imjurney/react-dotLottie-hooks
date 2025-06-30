@@ -1,14 +1,33 @@
 {
   "name": "pnpm-monorepo",
   "version": "1.0.0",
-  "description": "",
+  "description": "🎯 React DotLottie Hooks with GSAP ScrollTrigger - Simple and powerful animation library for modern React applications",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm -r build",
+    "build:packages": "pnpm --filter './packages/*' build",
+    "build:examples": "pnpm --filter './examples/*' build",
+    "dev": "pnpm --filter './examples/*' dev",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "react",
+    "hooks",
+    "lottie",
+    "dotlottie",
+    "animation",
+    "scroll",
+    "gsap",
+    "scrolltrigger",
+    "ssr",
+    "nextjs",
+    "typescript",
+    "monorepo"
+  ],
+  "author": "Imjurney <your.email@example.com>",
+  "license": "MIT",
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
     "@types/node": "^24.0.4",

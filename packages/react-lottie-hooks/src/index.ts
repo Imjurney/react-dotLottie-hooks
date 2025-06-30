@@ -1,2 +1,5 @@
 export { useLottieScrollTrigger } from "./useLottieScrollTrigger";
-export type { UseLottieScrollTriggerOptions } from "./useLottieScrollTrigger";
+export type {
+  UseLottieScrollTriggerOptions,
+  UseLottieScrollTriggerReturn,
+} from "./useLottieScrollTrigger";
