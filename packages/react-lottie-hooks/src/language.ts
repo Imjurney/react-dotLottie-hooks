@@ -1,0 +1,33 @@
+const DEBUG_LANGUAGE = {
+  ko: {
+    dotLottieSet: "DotLottie 인스턴스 설정:",
+    loadComplete: "DotLottie 로드 완료",
+    loadError: "DotLottie 로드 오류:",
+    scrollEnter: "스크롤 진입 - 애니메이션 재생",
+    scrollLeave: "스크롤 벗어남 - 애니메이션 정지",
+    scrollEnterBack: "스크롤 재진입 - 애니메이션 재생",
+    scrollLeaveBack: "스크롤 역방향 벗어남 - 애니메이션 정지",
+    playSuccess: "애니메이션 재생 성공",
+    playError: "애니메이션 재생 실패:",
+    pauseError: "애니메이션 정지 실패:",
+    conditionNotMet: "조건 미충족:",
+    scrollTriggerStart: "ScrollTrigger 설정 시작",
+    scrollTriggerDestroy: "ScrollTrigger 제거됨",
+  },
+  en: {
+    dotLottieSet: "DotLottie instance set:",
+    loadComplete: "DotLottie load complete",
+    loadError: "DotLottie load error:",
+    scrollEnter: "Scroll enter - Animation play",
+    scrollLeave: "Scroll leave - Animation pause",
+    scrollEnterBack: "Scroll enter back - Animation play",
+    scrollLeaveBack: "Scroll leave back - Animation pause",
+    playSuccess: "Animation play success",
+    playError: "Animation play failed:",
+    pauseError: "Animation pause failed:",
+    conditionNotMet: "Conditions not met:",
+    scrollTriggerStart: "ScrollTrigger setup start",
+    scrollTriggerDestroy: "ScrollTrigger destroyed",
+  },
+};
+export default DEBUG_LANGUAGE;

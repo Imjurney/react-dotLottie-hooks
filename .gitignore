@@ -6,6 +6,7 @@ build
 .DS_Store
 *.log
 *.env
+.github
 coverage
 public
 dist
