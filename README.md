@@ -12,8 +12,7 @@ pnpm-monorepo/
 │   └── react-lottie-hooks/     # 🎯 메인 훅 라이브러리
 └── examples/
     ├── nextjs-example/         # Next.js 예제
-    ├── vite-example/           # Vite 예제
-    └── remix-example/          # Remix 예제
+    └── vite-example/           # Vite 예제
 ```
 
 ## 🚀 빠른 시작
@@ -97,12 +96,6 @@ export default function MyComponent() {
 - 📁 [examples/vite-example](./examples/vite-example)
 - ⚡ 빠른 개발 환경
 - 🎨 다양한 사용 사례
-
-### Remix 예제
-
-- 📁 [examples/remix-example](./examples/remix-example)
-- 🚀 Full-stack React 프레임워크
-- 🎪 SSR 환경에서의 안전한 사용법
 
 ## 🛠️ 개발
 
