@@ -1,22 +1,37 @@
 // hooks/useLottieScrollTrigger.ts
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { DotLottie } from "@lottiefiles/dotlottie-react";
-import { gsap } from "gsap";
-import DEBUG_LANGUAGE from "./language";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { DotLottie } from '@lottiefiles/dotlottie-react';
+import { gsap } from 'gsap';
+import DEBUG_LANGUAGE from './language';
+const detectSSRFramework = () => {
+  if (!isClient)
+    return { isNextJS: false, isRemix: false, isSSRFramework: false };
 
+  // Next.js 감지
+  const isNextJS = !!(window as any).__NEXT_DATA__;
+
+  // Remix 감지 (React Router v7은 Remix 기반)
+  const isRemix = !!(
+    (window as any).__remixContext ||
+    (window as any).__remixRouteModules ||
+    document.querySelector('script[data-remix]')
+  );
+
+  // Nuxt는 Vue.js 프레임워크이므로 React 라이브러리에서는 불필요
+  // const isNuxt = !!(window as any).__NUXT__;
+
+  return {
+    isNextJS,
+    isRemix,
+    isSSRFramework: isNextJS || isRemix,
+  };
+};
 // SSR/CSR 환경 체크
-const isClient = typeof window !== "undefined";
+const isClient = typeof window !== 'undefined';
 
-// SSR 프레임워크 감지
-const isNextJS =
-  typeof window !== "undefined" && (window as any).__NEXT_DATA__ !== undefined;
-
-const isNuxt =
-  typeof window !== "undefined" && (window as any).__NUXT__ !== undefined;
-
-const isSSRFramework = isNextJS || isNuxt;
+const { isSSRFramework } = detectSSRFramework();
 
 if (isClient) {
   gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +44,7 @@ export interface UseLottieScrollTriggerOptions {
   markers?: boolean;
   pauseOnLoad?: boolean;
   debug?: boolean;
-  debugLanguage?: "ko" | "en";
+  debugLanguage?: 'ko' | 'en';
 
   // SSR/CSR 관련 옵션
   strictMode?: boolean;
@@ -56,7 +71,7 @@ export interface UseLottieScrollTriggerOptions {
     opacity?: number;
     duration?: number;
     ease?: string;
-    trigger?: "enter" | "enterBack" | "leave" | "leaveBack" | "scroll";
+    trigger?: 'enter' | 'enterBack' | 'leave' | 'leaveBack' | 'scroll';
     scrub?: boolean | number;
   };
 
@@ -94,20 +109,18 @@ export interface UseLottieScrollTriggerReturn {
 
   // 환경 정보
   isSSRFramework: boolean;
-  isNextJS: boolean;
-  isNuxt: boolean;
 }
 
 export const useLottieScrollTrigger = (
   options: UseLottieScrollTriggerOptions = {}
 ): UseLottieScrollTriggerReturn => {
   const {
-    start = "top center",
-    end = "bottom 20%",
-    markers = process.env.NODE_ENV === "development",
+    start = 'top center',
+    end = 'bottom 20%',
+    markers = process.env.NODE_ENV === 'development',
     pauseOnLoad = true,
     debug = false,
-    debugLanguage = "ko",
+    debugLanguage = 'ko',
     strictMode = isSSRFramework,
     waitForDOMReady = isSSRFramework,
 
@@ -155,7 +168,7 @@ export const useLottieScrollTrigger = (
   const getCurrentFrame = useCallback(() => frameRef.current, []);
   const getIsPlaying = useCallback(() => playStateRef.current, []);
 
-  const msg = DEBUG_LANGUAGE[debugLanguage] || DEBUG_LANGUAGE["ko"];
+  const msg = DEBUG_LANGUAGE[debugLanguage] || DEBUG_LANGUAGE['ko'];
 
   // 마운트 및 DOM 준비 상태 관리
   useEffect(() => {
@@ -165,8 +178,8 @@ export const useLottieScrollTrigger = (
       if (waitForDOMReady) {
         const checkDOMReady = () => {
           if (
-            document.readyState === "complete" ||
-            document.readyState === "interactive"
+            document.readyState === 'complete' ||
+            document.readyState === 'interactive'
           ) {
             setIsDOMReady(true);
           } else {
@@ -174,17 +187,17 @@ export const useLottieScrollTrigger = (
             const handleLoad = () => setIsDOMReady(true);
 
             document.addEventListener(
-              "DOMContentLoaded",
+              'DOMContentLoaded',
               handleDOMContentLoaded
             );
-            window.addEventListener("load", handleLoad);
+            window.addEventListener('load', handleLoad);
 
             return () => {
               document.removeEventListener(
-                "DOMContentLoaded",
+                'DOMContentLoaded',
                 handleDOMContentLoaded
               );
-              window.removeEventListener("load", handleLoad);
+              window.removeEventListener('load', handleLoad);
             };
           }
         };
@@ -230,7 +243,7 @@ export const useLottieScrollTrigger = (
           // 콜백 호출
           onPlayStateChange?.(true);
 
-          if (debug) console.log("DotLottie play event");
+          if (debug) console.log('DotLottie play event');
         };
 
         const handlePause = () => {
@@ -244,7 +257,7 @@ export const useLottieScrollTrigger = (
           // 콜백 호출
           onPlayStateChange?.(false);
 
-          if (debug) console.log("DotLottie pause event");
+          if (debug) console.log('DotLottie pause event');
         };
 
         const handleStop = () => {
@@ -261,7 +274,7 @@ export const useLottieScrollTrigger = (
           onPlayStateChange?.(false);
           onFrameChange?.(0);
 
-          if (debug) console.log("DotLottie stop event");
+          if (debug) console.log('DotLottie stop event');
         };
 
         // 프레임 업데이트는 throttle 적용
@@ -286,15 +299,15 @@ export const useLottieScrollTrigger = (
           }
         };
 
-        dotLottieInstance.addEventListener("load", handleLoad);
-        dotLottieInstance.addEventListener("loadError", handleLoadError);
-        dotLottieInstance.addEventListener("play", handlePlay);
-        dotLottieInstance.addEventListener("pause", handlePause);
-        dotLottieInstance.addEventListener("stop", handleStop);
+        dotLottieInstance.addEventListener('load', handleLoad);
+        dotLottieInstance.addEventListener('loadError', handleLoadError);
+        dotLottieInstance.addEventListener('play', handlePlay);
+        dotLottieInstance.addEventListener('pause', handlePause);
+        dotLottieInstance.addEventListener('stop', handleStop);
 
         // 프레임 이벤트는 조건부로만 등록 (성능 최적화)
         if (debug || enableStateTracking || onFrameChange) {
-          dotLottieInstance.addEventListener("frame", handleFrame);
+          dotLottieInstance.addEventListener('frame', handleFrame);
         }
 
         if (dotLottieInstance.isLoaded) {
@@ -316,14 +329,14 @@ export const useLottieScrollTrigger = (
         }
 
         return () => {
-          dotLottieInstance.removeEventListener("load", handleLoad);
-          dotLottieInstance.removeEventListener("loadError", handleLoadError);
-          dotLottieInstance.removeEventListener("play", handlePlay);
-          dotLottieInstance.removeEventListener("pause", handlePause);
-          dotLottieInstance.removeEventListener("stop", handleStop);
+          dotLottieInstance.removeEventListener('load', handleLoad);
+          dotLottieInstance.removeEventListener('loadError', handleLoadError);
+          dotLottieInstance.removeEventListener('play', handlePlay);
+          dotLottieInstance.removeEventListener('pause', handlePause);
+          dotLottieInstance.removeEventListener('stop', handleStop);
 
           if (debug || enableStateTracking || onFrameChange) {
-            dotLottieInstance.removeEventListener("frame", handleFrame);
+            dotLottieInstance.removeEventListener('frame', handleFrame);
           }
         };
       } else {
@@ -349,8 +362,8 @@ export const useLottieScrollTrigger = (
         y = 0,
         opacity = 1,
         duration = 1,
-        ease = "power2.out",
-        trigger: animationTrigger = "enter",
+        ease = 'power2.out',
+        trigger: animationTrigger = 'enter',
       } = gsapAnimations;
 
       if (animationTrigger === trigger) {
@@ -429,22 +442,22 @@ export const useLottieScrollTrigger = (
         onEnter: () => {
           const handler = onEnter || defaultOnEnter;
           handler(dotLottie);
-          executeGsapAnimation("enter");
+          executeGsapAnimation('enter');
         },
         onLeave: () => {
           const handler = onLeave || defaultOnLeave;
           handler(dotLottie);
-          executeGsapAnimation("leave");
+          executeGsapAnimation('leave');
         },
         onEnterBack: () => {
           const handler = onEnterBack || defaultOnEnterBack;
           handler(dotLottie);
-          executeGsapAnimation("enterBack");
+          executeGsapAnimation('enterBack');
         },
         onLeaveBack: () => {
           const handler = onLeaveBack || defaultOnLeaveBack;
           handler(dotLottie);
-          executeGsapAnimation("leaveBack");
+          executeGsapAnimation('leaveBack');
         },
       };
     }
@@ -466,7 +479,7 @@ export const useLottieScrollTrigger = (
   useGSAP(() => {
     if (!isClient) {
       if (debug)
-        console.log("SSR 환경에서는 ScrollTrigger를 사용할 수 없습니다.");
+        console.log('SSR 환경에서는 ScrollTrigger를 사용할 수 없습니다.');
       return;
     }
 
@@ -474,7 +487,7 @@ export const useLottieScrollTrigger = (
     const isAnimationReady = dotLottie && isDotLottieLoaded;
     const basicConditions = isMounted && isAnimationReady && triggerRef.current;
     const strictConditions = strictMode
-      ? isDOMReady && document.readyState === "complete"
+      ? isDOMReady && document.readyState === 'complete'
       : true;
 
     if (!basicConditions || !strictConditions) {
@@ -485,7 +498,7 @@ export const useLottieScrollTrigger = (
           triggerRef: !!triggerRef.current,
           ...(strictMode && {
             isDOMReady,
-            documentReady: document.readyState === "complete",
+            documentReady: document.readyState === 'complete',
           }),
         });
       }
@@ -541,14 +554,14 @@ export const useLottieScrollTrigger = (
   // 공통 제어 함수들 (debounce 및 콜백 포함)
   const play = useCallback(() => {
     if (!dotLottie || !isDotLottieLoaded) {
-      if (debug) console.warn("DotLottie가 아직 로드되지 않았습니다.");
+      if (debug) console.warn('DotLottie가 아직 로드되지 않았습니다.');
       return;
     }
 
     // debounce: 100ms 내 중복 호출 방지
     const now = Date.now();
     if (now - lastPlayTimeRef.current < 100) {
-      if (debug) console.log("Play 호출이 throttle되었습니다.");
+      if (debug) console.log('Play 호출이 throttle되었습니다.');
       return;
     }
     lastPlayTimeRef.current = now;
@@ -567,9 +580,9 @@ export const useLottieScrollTrigger = (
       // 콜백 호출
       onPlayStateChange?.(true);
 
-      if (debug) console.log("Play 실행됨");
+      if (debug) console.log('Play 실행됨');
     } catch (error) {
-      console.error("Play 실행 중 오류:", error);
+      console.error('Play 실행 중 오류:', error);
     }
   }, [
     dotLottie,
@@ -581,14 +594,14 @@ export const useLottieScrollTrigger = (
 
   const pause = useCallback(() => {
     if (!dotLottie || !isDotLottieLoaded) {
-      if (debug) console.warn("DotLottie가 아직 로드되지 않았습니다.");
+      if (debug) console.warn('DotLottie가 아직 로드되지 않았습니다.');
       return;
     }
 
     // debounce: 100ms 내 중복 호출 방지
     const now = Date.now();
     if (now - lastPauseTimeRef.current < 100) {
-      if (debug) console.log("Pause 호출이 throttle되었습니다.");
+      if (debug) console.log('Pause 호출이 throttle되었습니다.');
       return;
     }
     lastPauseTimeRef.current = now;
@@ -607,9 +620,9 @@ export const useLottieScrollTrigger = (
       // 콜백 호출
       onPlayStateChange?.(false);
 
-      if (debug) console.log("Pause 실행됨");
+      if (debug) console.log('Pause 실행됨');
     } catch (error) {
-      console.error("Pause 실행 중 오류:", error);
+      console.error('Pause 실행 중 오류:', error);
     }
   }, [
     dotLottie,
@@ -621,14 +634,14 @@ export const useLottieScrollTrigger = (
 
   const stop = useCallback(() => {
     if (!dotLottie || !isDotLottieLoaded) {
-      if (debug) console.warn("DotLottie가 아직 로드되지 않았습니다.");
+      if (debug) console.warn('DotLottie가 아직 로드되지 않았습니다.');
       return;
     }
 
     // debounce: 100ms 내 중복 호출 방지
     const now = Date.now();
     if (now - lastPauseTimeRef.current < 100) {
-      if (debug) console.log("Stop 호출이 throttle되었습니다.");
+      if (debug) console.log('Stop 호출이 throttle되었습니다.');
       return;
     }
     lastPauseTimeRef.current = now;
@@ -650,9 +663,9 @@ export const useLottieScrollTrigger = (
       onPlayStateChange?.(false);
       onFrameChange?.(0);
 
-      if (debug) console.log("Stop 실행됨");
+      if (debug) console.log('Stop 실행됨');
     } catch (error) {
-      console.error("Stop 실행 중 오류:", error);
+      console.error('Stop 실행 중 오류:', error);
     }
   }, [
     dotLottie,
@@ -666,7 +679,7 @@ export const useLottieScrollTrigger = (
   const setFrame = useCallback(
     (frame: number) => {
       if (!dotLottie || !isDotLottieLoaded) {
-        if (debug) console.warn("DotLottie가 아직 로드되지 않았습니다.");
+        if (debug) console.warn('DotLottie가 아직 로드되지 않았습니다.');
         return;
       }
 
@@ -686,7 +699,7 @@ export const useLottieScrollTrigger = (
 
         if (debug) console.log(`SetFrame 실행됨: ${frame}`);
       } catch (error) {
-        console.error("SetFrame 실행 중 오류:", error);
+        console.error('SetFrame 실행 중 오류:', error);
       }
     },
     [dotLottie, isDotLottieLoaded, enableStateTracking, onFrameChange, debug]
@@ -724,7 +737,5 @@ export const useLottieScrollTrigger = (
 
     // 환경 정보
     isSSRFramework,
-    isNextJS,
-    isNuxt,
   };
 };

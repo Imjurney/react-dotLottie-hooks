@@ -1,10 +1,10 @@
-import { useLottieScrollTrigger } from "@jurneyx2/react-lottie-hooks";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { useState } from "react";
+import { useLottieScrollTrigger } from '@jurneyx2/react-lottie-hooks';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useState } from 'react';
 
 export function LottieScrollExample() {
   const [externalPlayState, setExternalPlayState] = useState(false);
-  const [debugInfo, setDebugInfo] = useState(""); // 디버깅 정보
+  const [debugInfo, setDebugInfo] = useState(''); // 디버깅 정보
   const [isManualControl, setIsManualControl] = useState(false); // 수동 제어 모드
 
   // 성능 최적화된 훅 사용
@@ -19,33 +19,33 @@ export function LottieScrollExample() {
     isDOMReady,
     dotLottie, // DotLottie 인스턴스에 직접 접근
   } = useLottieScrollTrigger({
-    start: "top center",
-    end: "bottom center",
+    start: 'top center',
+    end: 'bottom center',
     debug: false, // React Router에서는 일반적으로 false
-    debugLanguage: "ko",
+    debugLanguage: 'ko',
     markers: false, // React Router에서는 일반적으로 false
 
     // 성능 최적화: 콜백으로 상태 동기화
     onPlayStateChange: (isPlaying) => {
-      console.log("재생 상태 변경:", isPlaying);
+      console.log('재생 상태 변경:', isPlaying);
       setExternalPlayState(isPlaying);
       setDebugInfo(
         `onPlayStateChange: ${
-          isPlaying ? "재생" : "일시정지"
+          isPlaying ? '재생' : '일시정지'
         } (${new Date().toLocaleTimeString()})`
       );
     },
 
     // 스크롤 이벤트 (수동 제어 모드가 아닐 때만 작동)
     onEnter: (dotLottie) => {
-      console.log("애니메이션 영역 진입!");
+      console.log('애니메이션 영역 진입!');
       if (!isManualControl) {
         dotLottie.play();
       }
       // onPlayStateChange 콜백에서 자동으로 setExternalPlayState(true) 호출됨
     },
     onLeave: (dotLottie) => {
-      console.log("애니메이션 영역 벗어남!");
+      console.log('애니메이션 영역 벗어남!');
       if (!isManualControl) {
         dotLottie.pause();
       }
@@ -61,7 +61,7 @@ export function LottieScrollExample() {
     const currentPlayState = getIsPlaying();
     const dotLottieNativeState = dotLottie?.isPlaying || false;
 
-    console.log("🔍 상태 확인:", {
+    console.log('🔍 상태 확인:', {
       refState: currentPlayState,
       dotLottieNative: dotLottieNativeState,
       externalState: externalPlayState,
@@ -70,17 +70,17 @@ export function LottieScrollExample() {
     });
 
     if (currentPlayState) {
-      console.log("⏸️ 일시정지 명령 실행 (수동 제어)");
+      console.log('⏸️ 일시정지 명령 실행 (수동 제어)');
       pause();
     } else {
-      console.log("▶️ 재생 명령 실행 (수동 제어)");
+      console.log('▶️ 재생 명령 실행 (수동 제어)');
       play();
     }
 
     // 3초 후 자동 제어 모드로 복원 (선택사항)
     setTimeout(() => {
       setIsManualControl(false);
-      console.log("🔄 자동 제어 모드로 복원");
+      console.log('🔄 자동 제어 모드로 복원');
     }, 3000);
 
     // 상태 업데이트는 onPlayStateChange 콜백에서 자동으로 처리됨
@@ -89,7 +89,7 @@ export function LottieScrollExample() {
   // 자동 제어 모드로 복원하는 함수
   const handleAutoMode = () => {
     setIsManualControl(false);
-    console.log("🔄 자동 제어 모드로 수동 복원");
+    console.log('🔄 자동 제어 모드로 수동 복원');
     setDebugInfo(
       `자동 제어 모드로 복원됨 (${new Date().toLocaleTimeString()})`
     );
@@ -134,8 +134,7 @@ export function LottieScrollExample() {
       {/* 애니메이션 섹션 */}
       <div
         ref={triggerRef}
-        className="h-screen flex items-center justify-center bg-white"
-      >
+        className="h-screen flex items-center justify-center bg-white">
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-8 text-gray-800">
             성능 최적화된 DotLottie 애니메이션
@@ -143,7 +142,7 @@ export function LottieScrollExample() {
 
           <div className="w-80 h-80 md:w-64 md:h-64 mx-auto mb-8 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
             <DotLottieReact
-              src="./animation.lottie"
+              src="./demo.lottie"
               dotLottieRefCallback={handleDotLottieRef}
               autoplay={false}
               loop={true}
@@ -156,28 +155,25 @@ export function LottieScrollExample() {
             <button
               onClick={handlePlayToggle}
               className="px-4 py-2 md:w-48 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-              disabled={!isLoaded}
-            >
-              {externalPlayState ? "⏸️ 일시정지" : "▶️ 재생"}
+              disabled={!isLoaded}>
+              {externalPlayState ? '⏸️ 일시정지' : '▶️ 재생'}
             </button>
 
             <button
               onClick={handleAutoMode}
               className={`px-4 py-2 md:w-48 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors disabled:opacity-50 font-medium ${
                 isManualControl
-                  ? "bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  ? 'bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
-              disabled={!isLoaded || !isManualControl}
-            >
+              disabled={!isLoaded || !isManualControl}>
               🔄 자동 모드
             </button>
 
             <button
               onClick={handleDirectCheck}
               className="px-4 py-2 md:w-48 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-              disabled={!isLoaded}
-            >
+              disabled={!isLoaded}>
               🔍 상태 확인
             </button>
           </div>
@@ -188,10 +184,9 @@ export function LottieScrollExample() {
               <div className="text-sm text-gray-600 mb-1">로드 상태</div>
               <div
                 className={`text-lg font-medium ${
-                  isLoaded ? "text-green-600" : "text-orange-600"
-                }`}
-              >
-                {isLoaded ? "✅ 로드됨" : "⏳ 로딩 중..."}
+                  isLoaded ? 'text-green-600' : 'text-orange-600'
+                }`}>
+                {isLoaded ? '✅ 로드됨' : '⏳ 로딩 중...'}
               </div>
             </div>
 
@@ -199,10 +194,9 @@ export function LottieScrollExample() {
               <div className="text-sm text-gray-600 mb-1">재생 상태</div>
               <div
                 className={`text-lg font-medium ${
-                  externalPlayState ? "text-green-600" : "text-gray-600"
-                }`}
-              >
-                {externalPlayState ? "▶️ 재생 중" : "⏸️ 일시정지"}
+                  externalPlayState ? 'text-green-600' : 'text-gray-600'
+                }`}>
+                {externalPlayState ? '▶️ 재생 중' : '⏸️ 일시정지'}
               </div>
             </div>
 
@@ -217,10 +211,9 @@ export function LottieScrollExample() {
               <div className="text-sm text-gray-600 mb-1">제어 모드</div>
               <div
                 className={`text-lg font-medium ${
-                  isManualControl ? "text-orange-600" : "text-blue-600"
-                }`}
-              >
-                {isManualControl ? "🔧 수동 제어" : "🤖 자동 제어"}
+                  isManualControl ? 'text-orange-600' : 'text-blue-600'
+                }`}>
+                {isManualControl ? '🔧 수동 제어' : '🤖 자동 제어'}
               </div>
             </div>
           </div>

@@ -1,9 +1,10 @@
-declare module "*.lottie" {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+declare module '*.lottie' {
   const content: any;
   export default content;
 }
 
-declare module "@/asset/animation.lottie" {
+declare module '@/asset/animation.lottie' {
   const content: any;
   export = content;
 }
