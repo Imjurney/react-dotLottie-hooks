@@ -1,6 +1,6 @@
 {
   "name": "@jurneyx2/react-lottie-hooks",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "🎯 Simple and powerful React hooks for DotLottie animations with GSAP ScrollTrigger integration and automatic SSR/CSR detection",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
