@@ -1,5 +1,5 @@
 {
-  "name": "@Imjurney/react-lottie-scroll-hooks",
+  "name": "@jurneyx2/react-lottie-scroll-hooks",
   "version": "1.0.0",
   "description": "React hooks for Lottie animations with scroll triggers using GSAP",
   "main": "dist/index.js",

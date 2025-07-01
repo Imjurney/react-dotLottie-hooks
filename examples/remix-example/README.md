@@ -1,6 +1,6 @@
 # 🎭 Remix + DotLottie ScrollTrigger 예제
 
-Remix 프레임워크에서 `@Imjurney/react-lottie-hooks`를 사용한 실제 구현 예제입니다.
+Remix 프레임워크에서 `@jurneyx2/react-lottie-hooks`를 사용한 실제 구현 예제입니다.
 
 ## 🚀 빠른 시작
 
@@ -52,7 +52,7 @@ pnpm preview
 ## 📦 주요 의존성
 
 - **Remix**: 풀스택 웹 프레임워크
-- **@Imjurney/react-lottie-hooks**: DotLottie ScrollTrigger 훅
+- **@jurneyx2/react-lottie-hooks**: DotLottie ScrollTrigger 훅
 - **@lottiefiles/dotlottie-react**: DotLottie React 컴포넌트
 - **GSAP**: 애니메이션 라이브러리
 - **Tailwind CSS**: 유틸리티 CSS 프레임워크
@@ -109,7 +109,7 @@ remix-example/
 ## 📖 더 알아보기
 
 - [Remix 공식 문서](https://remix.run/docs)
-- [@Imjurney/react-lottie-hooks 문서](../../packages/react-lottie-hooks/README.md)
+- [@jurneyx2/react-lottie-hooks 문서](../../packages/react-lottie-hooks/README.md)
 - [Tailwind CSS 문서](https://tailwindcss.com/docs)
 - [GSAP ScrollTrigger 문서](https://greensock.com/scrolltrigger/)
 

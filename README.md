@@ -25,13 +25,13 @@ pnpm-monorepo/
 
 ```bash
 # pnpm (권장)
-pnpm add @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
+pnpm add @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 
 # npm
-npm install @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
+npm install @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 
 # yarn
-yarn add @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
+yarn add @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 ```
 
 ### 2. 기본 사용법
@@ -39,7 +39,7 @@ yarn add @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 ```tsx
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { useLottieScrollTrigger } from "@Imjurney/react-lottie-hooks";
+import { useLottieScrollTrigger } from "@jurneyx2/react-lottie-hooks";
 
 export default function MyComponent() {
   const { triggerRef, lottieContainerRef, handleDotLottieRef, isLoaded } =
@@ -74,7 +74,7 @@ export default function MyComponent() {
 
 ## 📦 패키지
 
-### [@Imjurney/react-lottie-hooks](./packages/react-lottie-hooks)
+### [@jurneyx2/react-lottie-hooks](./packages/react-lottie-hooks)
 
 메인 훅 라이브러리입니다.
 
