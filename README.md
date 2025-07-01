@@ -1,10 +1,10 @@
-# 🎯 React DotLottie Hooks v1.2.0
+# 🎯 React DotLottie Hooks v1.2.3
 
 **모던한 React 애플리케이션을 위한 간단하고 강력한 DotLottie 애니메이션 훅**
 
 > ✨ DotLottie + GSAP ScrollTrigger로 멋진 스크롤 애니메이션을 쉽게 만들어보세요!
 >
-> **v1.2.0은 최종 안정 버전입니다** - 4가지 주요 React 프레임워크 완전 지원
+> **v1.2.3은 최종 안정 버전입니다** - 4가지 주요 React 프레임워크 완전 지원
 
 ## 📁 프로젝트 구조
 
@@ -88,12 +88,23 @@ export default function MyComponent() {
 
 ## 🎨 예제
 
+![Next.js Example Demo](./docs/assets/gifs/demo.gif)
+
 ### Next.js 예제
 
 - 📁 [examples/nextjs-example](./examples/nextjs-example)
 - 🌐 App Router 사용
 - ✨ 기본 & 고급 애니메이션 데모
 - 🎯 SSR 안전성 시연
+
+**실행 방법:**
+
+```bash
+cd examples/nextjs-example
+pnpm install
+pnpm dev
+# http://localhost:3000에서 확인
+```
 
 ### Vite 예제
 
@@ -102,6 +113,15 @@ export default function MyComponent() {
 - 🎨 Tailwind CSS 스타일링
 - 🎯 다양한 사용 사례
 
+**실행 방법:**
+
+```bash
+cd examples/vite-example
+pnpm install
+pnpm dev
+# http://localhost:5173에서 확인
+```
+
 ### Remix 예제
 
 - 📁 [examples/remix-example](./examples/remix-example)
@@ -109,12 +129,52 @@ export default function MyComponent() {
 - 🎨 Tailwind CSS 스타일링
 - 🔄 SSR/CSR 안전성 시연
 
+**실행 방법:**
+
+```bash
+cd examples/remix-example
+pnpm install
+pnpm dev
+# http://localhost:5173에서 확인
+```
+
 ### React Router 예제
 
 - 📁 [examples/react-router-example](./examples/react-router-example)
 - 🚦 최신 React Router 7
 - 🎨 Tailwind CSS 4.0 스타일링
 - 📂 파일 기반 라우팅
+
+**실행 방법:**
+
+```bash
+cd examples/react-router-example
+pnpm install
+pnpm dev
+# http://localhost:5173에서 확인
+```
+
+### 🎥 모든 예제 공통 기능
+
+![Common Features Demo](./docs/assets/gifs/common-features-demo.gif)
+
+모든 예제에는 다음 기능들이 포함되어 있습니다:
+
+- **🎬 스크롤 트리거 애니메이션**: 스크롤에 따른 부드러운 DotLottie 애니메이션
+- **⏯️ 수동 재생/일시정지 컨트롤**: 애니메이션 수동 제어
+- **🔍 실시간 디버그 정보**: 애니메이션 상태 실시간 표시
+- **📱 반응형 디자인**: 모바일 친화적 레이아웃
+- **⚡ 성능 모니터링**: 프레임률 및 상태 추적
+- **🔄 모드 전환**: 스크롤/수동 제어 모드 토글
+
+### 📸 스크린샷 갤러리
+
+| 프레임워크       | 데스크톱 뷰                                                    | 모바일 뷰                                                    |
+| ---------------- | -------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Next.js**      | ![Desktop](./docs/assets/screenshots/nextjs-desktop.png)       | ![Mobile](./docs/assets/screenshots/nextjs-mobile.png)       |
+| **Vite**         | ![Desktop](./docs/assets/screenshots/vite-desktop.png)         | ![Mobile](./docs/assets/screenshots/vite-mobile.png)         |
+| **Remix**        | ![Desktop](./docs/assets/screenshots/remix-desktop.png)        | ![Mobile](./docs/assets/screenshots/remix-mobile.png)        |
+| **React Router** | ![Desktop](./docs/assets/screenshots/react-router-desktop.png) | ![Mobile](./docs/assets/screenshots/react-router-mobile.png) |
 
 ## 🛠️ 개발
 
@@ -155,7 +215,7 @@ cd examples/nextjs-example
 pnpm dev
 ```
 
-## 🆚 v1.2.0 주요 특징 (최종 버전)
+## 🆚 v1.2.3 주요 특징 (최종 버전)
 
 ### ✅ 개선된 점
 

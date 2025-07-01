@@ -1,5 +1,16 @@
 # Next.js Example
 
+이 예제는 Next.js App Router에서 `@jurneyx2/react-lottie-hooks`를 사용하여 DotLottie 애니메이션을 구현하는 방법을 보여줍니다.
+
+## 🚀 실행 방법
+
+```bash
+cd examples/nextjs-example
+pnpm install
+pnpm dev
+# http://localhost:3000에서 확인
+```
+
 ## 사용법
 
 ### 1. 온라인 Lottie 파일 사용 (현재 설정)

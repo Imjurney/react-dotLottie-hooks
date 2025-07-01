@@ -4,6 +4,12 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
 
+## [1.2.3] - 2025-07-01
+
+### 📚 Documentation Enhancement
+
+- Add GIF.
+
 ## [1.2.2] - 2025-07-01
 
 ### 📚 Documentation Update

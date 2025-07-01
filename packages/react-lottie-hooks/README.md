@@ -1,10 +1,12 @@
-# 🎯 React Lottie Hooks v1.2.2 (DotLottie)
+# 🎯 React Lottie Hooks v1.2.3 (DotLottie)
 
 **Simple and powerful React hooks for DotLottie animations with GSAP ScrollTrigger**
 
 > ✨ Easily implement scroll-based animations with React hooks optimized exclusively for DotLottie!
 >
-> **v1.2.1 is the stable release** - A mature and reliable DotLottie-only solution
+> **v1.2.2 is the stable release** - A mature and reliable DotLottie-only solution
+
+🚀 **[View Live Examples](https://github.com/Imjurney/react-dotLottie-hooks/tree/main/examples)** | 📦 **[NPM Package](https://www.npmjs.com/package/@jurneyx2/react-lottie-hooks)** | 📚 **[Documentation](https://github.com/Imjurney/react-dotLottie-hooks)**
 
 ## 🚀 Features
 
@@ -14,7 +16,7 @@
 - 🔧 **TypeScript**: Complete type safety
 - 🎪 **Simple API**: Ready to use without complex configuration
 - ⚡ **Optimized**: Performance and memory efficiency optimized
-- 🎨 **4 Examples**: Complete support for Next.js, Vite, Remix, React Router
+- 🎨 **4 Complete Examples**: Next.js, Vite, Remix, and React Router implementations with full source code
 
 ## 📦 Installation
 
@@ -206,6 +208,183 @@ export default function MyPage() {
         dotLottieRefCallback={handleDotLottieRef}
         className="w-full h-full"
       />
+    </div>
+  );
+}
+```
+
+## 🎨 Framework Examples
+
+This package includes complete example implementations for major React frameworks:
+
+### 📱 Next.js Example
+
+Perfect for server-side rendering with App Router:
+
+```bash
+cd examples/nextjs-example
+pnpm install
+pnpm dev
+```
+
+**Features:**
+
+- ✅ App Router with SSR/CSR safety
+- ✅ Tailwind CSS styling
+- ✅ TypeScript configuration
+- ✅ Production-ready build
+
+**Key Implementation:**
+
+```tsx
+// app/page.tsx
+import LottieScrollExample from "@/components/LottieScrollExample";
+
+export default function Home() {
+  return <LottieScrollExample />;
+}
+```
+
+### ⚡ Vite Example
+
+Lightning-fast development with modern tooling:
+
+```bash
+cd examples/vite-example
+pnpm install
+pnpm dev
+```
+
+**Features:**
+
+- ✅ Lightning-fast HMR
+- ✅ Optimized production build
+- ✅ TypeScript support
+- ✅ Modern bundling
+
+### 🏃 Remix Example
+
+Full-stack framework with SSR capabilities:
+
+```bash
+cd examples/remix-example
+pnpm install
+pnpm dev
+```
+
+**Features:**
+
+- ✅ Server-side rendering
+- ✅ Progressive enhancement
+- ✅ TypeScript configuration
+- ✅ Tailwind CSS integration
+
+### 🚦 React Router Example
+
+Client-side routing with React Router 7:
+
+```bash
+cd examples/react-router-example
+pnpm install
+pnpm dev
+```
+
+**Features:**
+
+- ✅ React Router v7
+- ✅ File-based routing
+- ✅ Tailwind CSS 4.0
+- ✅ Vite build system
+
+### 🎯 Common Example Features
+
+All examples include:
+
+- **Scroll Trigger Animation**: Smooth DotLottie animations triggered by scroll
+- **Play/Pause Controls**: Manual animation control
+- **Debug Information**: Real-time animation state display
+- **Responsive Design**: Mobile-friendly layouts
+- **Performance Monitoring**: Frame rate and state tracking
+- **Manual Control Mode**: Toggle between scroll and manual control
+
+### 📋 Example Code Structure
+
+Each example follows this pattern:
+
+```tsx
+export default function LottieScrollExample() {
+  const [externalPlayState, setExternalPlayState] = useState(false);
+  const [isManualControl, setIsManualControl] = useState(false);
+
+  const {
+    triggerRef,
+    handleDotLottieRef,
+    play,
+    pause,
+    isPlaying,
+    currentFrame,
+    isLoaded,
+  } = useLottieScrollTrigger({
+    start: "top 80%",
+    end: "bottom 20%",
+    debug: process.env.NODE_ENV === "development",
+    enableStateTracking: true,
+    onPlayStateChange: (isPlaying) => {
+      setExternalPlayState(isPlaying);
+    },
+  });
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
+      {/* Control Panel */}
+      <div className="fixed top-4 right-4 bg-white rounded-lg shadow-lg p-4">
+        <button
+          onClick={() => setIsManualControl(!isManualControl)}
+          className="mb-2 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          {isManualControl ? "Auto Mode" : "Manual Mode"}
+        </button>
+
+        {isManualControl && (
+          <div className="space-x-2">
+            <button
+              onClick={play}
+              className="px-3 py-1 bg-green-500 text-white rounded"
+            >
+              Play
+            </button>
+            <button
+              onClick={pause}
+              className="px-3 py-1 bg-red-500 text-white rounded"
+            >
+              Pause
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Scroll Trigger Section */}
+      <div
+        ref={triggerRef}
+        className="h-screen flex items-center justify-center"
+      >
+        <div className="max-w-md w-full">
+          <DotLottieReact
+            src="/animations/sample.lottie"
+            loop={false}
+            autoplay={false}
+            dotLottieRefCallback={handleDotLottieRef}
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
+
+      {/* Status Display */}
+      <div className="p-8 text-center">
+        <p>Animation Status: {isLoaded ? "✅ Loaded" : "⏳ Loading..."}</p>
+        <p>Playing: {isPlaying ? "▶️ Yes" : "⏸️ No"}</p>
+        <p>Current Frame: {currentFrame}</p>
+      </div>
     </div>
   );
 }
