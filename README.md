@@ -1,8 +1,10 @@
-# 🎯 React DotLottie Hooks
+# 🎯 React DotLottie Hooks v1.2.0
 
 **모던한 React 애플리케이션을 위한 간단하고 강력한 DotLottie 애니메이션 훅**
 
 > ✨ DotLottie + GSAP ScrollTrigger로 멋진 스크롤 애니메이션을 쉽게 만들어보세요!
+>
+> **v1.2.0은 최종 안정 버전입니다** - 4가지 주요 React 프레임워크 완전 지원
 
 ## 📁 프로젝트 구조
 
@@ -12,7 +14,9 @@ pnpm-monorepo/
 │   └── react-lottie-hooks/     # 🎯 메인 훅 라이브러리
 └── examples/
     ├── nextjs-example/         # Next.js 예제
-    └── vite-example/           # Vite 예제
+    ├── vite-example/           # Vite 예제
+    ├── remix-example/          # Remix 예제
+    └── react-router-example/   # React Router 예제
 ```
 
 ## 🚀 빠른 시작
@@ -95,7 +99,22 @@ export default function MyComponent() {
 
 - 📁 [examples/vite-example](./examples/vite-example)
 - ⚡ 빠른 개발 환경
-- 🎨 다양한 사용 사례
+- 🎨 Tailwind CSS 스타일링
+- 🎯 다양한 사용 사례
+
+### Remix 예제
+
+- 📁 [examples/remix-example](./examples/remix-example)
+- 🏃 최신 Remix 프레임워크
+- 🎨 Tailwind CSS 스타일링
+- 🔄 SSR/CSR 안전성 시연
+
+### React Router 예제
+
+- 📁 [examples/react-router-example](./examples/react-router-example)
+- 🚦 최신 React Router 7
+- 🎨 Tailwind CSS 4.0 스타일링
+- 📂 파일 기반 라우팅
 
 ## 🛠️ 개발
 
@@ -136,7 +155,7 @@ cd examples/nextjs-example
 pnpm dev
 ```
 
-## 🆚 v3.0.0 주요 변경사항
+## 🆚 v1.2.0 주요 특징 (최종 버전)
 
 ### ✅ 개선된 점
 
@@ -144,8 +163,9 @@ pnpm dev
 - **성능**: 단일 라이브러리 지원으로 번들 크기 감소
 - **안정성**: 복잡한 하이브리드 로직 제거
 - **타입 안전성**: DotLottie 전용 타입으로 더 정확함
+- **프레임워크 지원**: Next.js, Vite, Remix, React Router 완전 지원
 
-### 💔 Breaking Changes
+### 💔 Breaking Changes (v1.1.x에서)
 
 - `mode` 옵션 제거 (DotLottie만 지원)
 - `animationData`, `path`, `renderer` 등 lottie-web 옵션 제거

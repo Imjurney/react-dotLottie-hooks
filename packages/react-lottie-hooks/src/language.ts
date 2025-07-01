@@ -11,11 +11,6 @@ const DEBUG_LANGUAGE = {
     lottieSuccess: "Lottie 애니메이션 초기화 완료",
     lottieError: "Lottie 애니메이션 초기화 실패:",
 
-    // lottie-web 전용
-    lottieWebInit: "lottie-web 애니메이션 초기화 중...",
-    lottieWebLoadComplete: "lottie-web 애니메이션 로드 완료",
-    lottieWebLoadError: "lottie-web 애니메이션 로드 실패:",
-
     // DotLottie 전용
     dotLottieSet: "DotLottie 인스턴스 설정됨:",
 
@@ -56,11 +51,6 @@ const DEBUG_LANGUAGE = {
     lottieInit: "Initializing Lottie animation...",
     lottieSuccess: "Lottie animation initialized successfully",
     lottieError: "Failed to initialize Lottie animation:",
-
-    // lottie-web specific
-    lottieWebInit: "Initializing lottie-web animation...",
-    lottieWebLoadComplete: "lottie-web animation loaded successfully",
-    lottieWebLoadError: "Failed to load lottie-web animation:",
 
     // DotLottie specific
     dotLottieSet: "DotLottie instance set:",

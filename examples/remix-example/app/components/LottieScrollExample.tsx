@@ -1,10 +1,8 @@
-"use client";
-
 import { useLottieScrollTrigger } from "@Imjurney/react-lottie-hooks";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useState } from "react";
 
-export default function LottieScrollExample() {
+export function LottieScrollExample() {
   const [externalPlayState, setExternalPlayState] = useState(false);
   const [debugInfo, setDebugInfo] = useState(""); // 디버깅 정보
   const [isManualControl, setIsManualControl] = useState(false); // 수동 제어 모드
@@ -23,9 +21,9 @@ export default function LottieScrollExample() {
   } = useLottieScrollTrigger({
     start: "top center",
     end: "bottom center",
-    debug: process.env.NODE_ENV === "development",
+    debug: false, // Remix에서는 일반적으로 false
     debugLanguage: "ko",
-    markers: process.env.NODE_ENV === "development",
+    markers: false, // Remix에서는 일반적으로 false
 
     // 성능 최적화: 콜백으로 상태 동기화
     onPlayStateChange: (isPlaying) => {
@@ -44,12 +42,14 @@ export default function LottieScrollExample() {
       if (!isManualControl) {
         dotLottie.play();
       }
+      // onPlayStateChange 콜백에서 자동으로 setExternalPlayState(true) 호출됨
     },
     onLeave: (dotLottie) => {
       console.log("애니메이션 영역 벗어남!");
       if (!isManualControl) {
         dotLottie.pause();
       }
+      // onPlayStateChange 콜백에서 자동으로 setExternalPlayState(false) 호출됨
     },
   });
 
@@ -109,23 +109,22 @@ export default function LottieScrollExample() {
   // SSR 안전성 체크
   if (!isClient || !isDOMReady) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen w-screen flex items-center justify-center">
         <div className="text-xl text-gray-600">로딩 중...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-purple-50">
+    <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-purple-50">
       {/* 헤더 섹션 */}
       <div className="h-screen flex flex-col items-center justify-center">
-        <h1 className="text-5xl font-bold text-center mb-8 text-gray-800">
+        <h1 className="text-5xl md:text-3xl font-bold text-center mb-8 text-gray-800">
           React Lottie Hooks v1.2
         </h1>
-        <p className="text-xl text-gray-600 text-center mb-8 max-w-2xl">
-          성능 최적화된 DotLottie 전용 스크롤 기반 애니메이션 훅
+        <p className="text-xl md:text-base text-gray-600 text-center mb-8 max-w-3xl md:px-4">
+          Remix에서 성능 최적화된 DotLottie 전용 스크롤 기반 애니메이션 훅
         </p>
-
         <div className="mt-8 text-center text-gray-500">
           ⬇️ 아래로 스크롤하여 애니메이션을 확인하세요
         </div>
@@ -141,9 +140,9 @@ export default function LottieScrollExample() {
             성능 최적화된 DotLottie 애니메이션
           </h2>
 
-          <div className="w-80 h-80 mx-auto mb-8 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+          <div className="w-80 h-80 md:w-64 md:h-64 mx-auto mb-8 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
             <DotLottieReact
-              src="/animation.lottie"
+              src="./animation.lottie"
               dotLottieRefCallback={handleDotLottieRef}
               autoplay={false}
               loop={true}
@@ -151,22 +150,21 @@ export default function LottieScrollExample() {
             />
           </div>
 
-          <div className="flex justify-center gap-4 mb-8">
+          {/* 제어 버튼 */}
+          <div className="flex md:flex-col justify-center gap-4 md:gap-2 md:items-center mb-8">
             <button
-              type="button"
               onClick={handlePlayToggle}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
+              className="px-4 py-2 md:w-48 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
               disabled={!isLoaded}
             >
               {externalPlayState ? "⏸️ 일시정지" : "▶️ 재생"}
             </button>
 
             <button
-              type="button"
               onClick={handleAutoMode}
-              className={`px-4 py-2 rounded-lg transition-colors disabled:opacity-50 ${
+              className={`px-4 py-2 md:w-48 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors disabled:opacity-50 font-medium ${
                 isManualControl
-                  ? "bg-orange-500 text-white hover:bg-orange-600"
+                  ? "bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
               disabled={!isLoaded || !isManualControl}
@@ -175,9 +173,8 @@ export default function LottieScrollExample() {
             </button>
 
             <button
-              type="button"
               onClick={handleDirectCheck}
-              className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors disabled:opacity-50"
+              className="px-4 py-2 md:w-48 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
               disabled={!isLoaded}
             >
               🔍 상태 확인
@@ -185,7 +182,7 @@ export default function LottieScrollExample() {
           </div>
 
           {/* 상태 정보 */}
-          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-1 gap-4 max-w-md md:max-w-xs mx-auto mb-6">
             <div className="bg-gray-100 p-4 rounded-lg">
               <div className="text-sm text-gray-600 mb-1">로드 상태</div>
               <div
@@ -263,6 +260,9 @@ export default function LottieScrollExample() {
           </h2>
           <p className="text-lg text-gray-600">
             스크롤 위치에 따라 애니메이션이 자동으로 제어됩니다.
+          </p>
+          <p className="text-md text-gray-500 mt-4">
+            Remix + DotLottie + GSAP ScrollTrigger 구현
           </p>
         </div>
       </div>

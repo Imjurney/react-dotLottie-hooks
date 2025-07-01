@@ -4,9 +4,9 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
 
-## [3.0.0] - 2024-12-30
+## [1.2.0] - 2025-07-01 (최종 버전)
 
-### 🚀 주요 변경사항 (Breaking Changes)
+### 🚀 주요 변경사항
 
 #### DotLottie 전용 최적화
 
@@ -18,7 +18,7 @@
 #### 새로운 API 구조
 
 ```tsx
-// Before (v2.x)
+// Before (v1.1.x)
 const hook = useLottieScrollTrigger({
   mode: "dotlottie", // 더이상 필요하지 않음
   animationData: data, // 제거됨
@@ -26,7 +26,7 @@ const hook = useLottieScrollTrigger({
   renderer: "svg", // 제거됨
 });
 
-// After (v3.x)
+// After (v1.2.x) - 최종 버전
 const hook = useLottieScrollTrigger({
   // 간단한 ScrollTrigger 옵션만 필요
   start: "top center",
@@ -34,43 +34,6 @@ const hook = useLottieScrollTrigger({
   debug: true,
 });
 ```
-
-#### 마이그레이션 가이드
-
-1. **lottie-web 의존성 제거**:
-
-   ```bash
-   pnpm remove lottie-web
-   ```
-
-2. **DotLottie 파일 준비**:
-
-   - JSON 파일을 `.lottie` 파일로 변환
-   - 또는 DotLottie 호환 URL 사용
-
-3. **코드 업데이트**:
-
-   ```tsx
-   // Old
-   const hook = useLottieScrollTrigger({
-     mode: "lottie-web",
-     animationData: jsonData,
-   });
-
-   // New
-   const hook = useLottieScrollTrigger({
-     start: "top center",
-     end: "bottom center",
-   });
-
-   // DotLottieReact 컴포넌트 사용
-   <DotLottieReact
-     src="/animation.lottie"
-     dotLottieRefCallback={hook.handleDotLottieRef}
-     autoplay={false}
-     loop={true}
-   />;
-   ```
 
 ### ✨ 개선사항
 
@@ -82,12 +45,95 @@ const hook = useLottieScrollTrigger({
 ### 🔧 새로운 기능
 
 - **향상된 디버깅**: 더 명확한 에러 메시지와 디버그 정보
-- **개선된 SSR 지원**: Next.js, Nuxt.js에서 더 안정적인 동작
+- **개선된 SSR 지원**: Next.js, Remix, React Router에서 안정적인 동작
 - **최적화된 이벤트 핸들링**: DotLottie 전용으로 최적화된 이벤트 처리
+- **4가지 프레임워크 예제**: Next.js, Vite, Remix, React Router 완전 지원
+
+### 📁 지원 프레임워크
+
+- ✅ **Next.js**: App Router 지원, SSR 안전
+- ✅ **Vite**: 빠른 개발 환경, HMR 지원
+- ✅ **Remix**: 최신 웹 표준, SSR/CSR 호환
+- ✅ **React Router**: 파일 기반 라우팅, v7 지원
+
+### 📦 마이그레이션 가이드
+
+1. **lottie-web 의존성 제거**:
+
+   ```bash
+   pnpm remove lottie-web @types/lottie-web
+   ```
+
+2. **DotLottie/또는 JSON 파일 준비**
+
+3. **코드 업데이트**:
+
+   ```tsx
+   // Old (v1.1.x)
+   const hook = useLottieScrollTrigger({
+     mode: "lottie-web",
+     animationData: jsonData,
+   });
+
+   // New (v1.2.x) - 최종 버전
+   const hook = useLottieScrollTrigger({
+     start: "top center",
+     end: "bottom center",
+   });
+
+
+   <DotLottieReact
+     src="/animation.lottie"
+     dotLottieRefCallback={hook.handleDotLottieRef}
+     autoplay={false}
+     loop={true}
+   />;
+
+
+   or
+
+   <DotLottieReact
+     data={/* json파일 */}
+     dotLottieRefCallback={hook.handleDotLottieRef}
+     autoplay={false}
+     loop={true}
+   />;
+   ```
+
+### 🎯 성능 최적화
+
+- **React State 추적 비활성화**: 기본값으로 성능 우선
+- **메모이제이션**: 불필요한 리랜더링 방지
+- **디바운싱**: 이벤트 핸들러 최적화
+- **코드 분할**: 각 프레임워크별 최적화된 번들링
+
+### 🎨 스타일링
+
+모든 예제에서 **Tailwind CSS**를 사용
+
+### � 문서화
+
+- **완전한 예제**: 4가지 프레임워크별 실제 구현
+- **상세한 README**: 각 프레임워크별 설정 가이드
+- **타입 안전성**: TypeScript 완전 지원
+- **실전 팁**: 프로덕션 환경 최적화 방법
 
 ---
 
-## [2.0.0] - 2024-12-XX (Deprecated)
+## [1.1.x] - 이전 버전 (지원 중단)
+
+### ⚠️ 지원 중단 안내
+
+v1.1.x 이하 버전들은 더 이상 지원되지 않습니다.
+**v1.2.0 (최종 버전)**으로 업그레이드하시기 바랍니다.
+
+### 이전 기능들
+
+- 하이브리드 모드 지원 (DotLottie + lottie-web)
+- 자동 모드 감지
+- 복잡한 API 구조
+
+**더 이상 유지보수되지 않으니 v1.2.0을 사용해주세요.**
 
 ### ⚠️ 지원 중단 안내
 
@@ -138,17 +184,6 @@ const hook = useLottieScrollTrigger({
 });
 ```
 
-**2. 자동 의존성 관리**
-
-```tsx
-// v1.x (모든 의존성 필수)
-npm install @lottiefiles/dotlottie-react lottie-web
-
-// v2.x (선택적 설치)
-npm install @lottiefiles/dotlottie-react  # DotLottie 사용 시만
-npm install lottie-web                    # lottie-web 사용 시만
-```
-
 ### 🎯 확장성 개선사항
 
 #### 코드 유지보수성
@@ -157,58 +192,47 @@ npm install lottie-web                    # lottie-web 사용 시만
 - **의존성 역전**: 인터페이스 기반 설계로 새로운 애니메이션 라이브러리 추가 용이
 - **전략 패턴**: 런타임에 최적의 전략 선택
 
-#### 성능 최적화
+#### 마이그레이션 가이드
 
-- **지연 로딩**: 사용하는 모드만 로드
-- **트리 셰이킹**: 번들러에서 사용하지 않는 코드 자동 제거
-- **메모리 최적화**: 불필요한 인스턴스 생성 방지
+**v1.1.x에서 v1.2.x로 마이그레이션**:
 
-#### 개발자 경험
+1. **의존성 변경**:
 
-- **IntelliSense 향상**: 모든 모드에서 완전한 타입 추론
-- **디버깅 개선**: 다국어 디버그 메시지 (한국어/영어)
-- **에러 처리**: 더 명확한 에러 메시지와 해결 방법 제시
+   ```bash
+   # lottie-web 제거
+   npm uninstall lottie-web @types/lottie-web
 
-### 📚 문서화 개선
+   # DotLottie만 사용
+   npm install @lottiefiles/dotlottie-react
+   ```
 
-#### 새로운 가이드
+2. **코드 변경**:
 
-- **마이그레이션 가이드**: v1.x → v2.x 단계별 업그레이드
-- **확장성 가이드**: 새로운 애니메이션 라이브러리 추가 방법
-- **성능 최적화 가이드**: 프로덕션 환경 최적화 팁
-- **트러블슈팅**: 일반적인 문제와 해결 방법
+   ```tsx
+   // Before
+   const hook = useLottieScrollTrigger({
+     mode: "dotlottie", // 제거
+     // ... 기타 lottie-web 옵션들 제거
+   });
 
-#### 실전 예제
+   // After
+   const hook = useLottieScrollTrigger({
+     // DotLottie 전용 옵션만 사용
+     start: "top center",
+     end: "bottom center",
+   });
+   ```
 
-- **Next.js SSR 안전 컴포넌트**: Hydration 에러 방지
-- **반응형 다중 애니메이션**: 디바이스별 최적화
-- **동적 모드 전환**: 런타임 모드 변경
+3. **컴포넌트 변경**:
 
-### 🔮 향후 계획
+   ```tsx
+   // Before: mode별 분기 처리
+   {
+     hook.mode === "dotlottie" && (
+       <DotLottieReact dotLottieRefCallback={hook.handleDotLottieRef} />
+     );
+   }
 
-#### v2.1 (단기)
-
-- **성능 모니터링**: 애니메이션 성능 메트릭 수집
-- **접근성 향상**: `prefers-reduced-motion` 지원
-- **추가 이벤트**: `onProgress`, `onComplete` 등
-
-#### v2.2 (중기)
-
-- **다중 애니메이션**: 하나의 훅으로 여러 애니메이션 제어
-- **애니메이션 체인**: 순차적 재생 지원
-- **뷰포트 최적화**: Intersection Observer 기반 지연 로딩
-
-#### v3.x (장기)
-
-- **플러그인 시스템**: 커스텀 렌더러 지원 (Rive, Three.js 등)
-- **AI 기반 최적화**: 사용 패턴 분석 후 자동 최적화
-- **추가 프레임워크**: Svelte, Vue 지원 검토
-
-### 🤝 기여자
-
-이 버전은 다음과 같은 철학으로 개발되었습니다:
-
-- **확장성 우선**: 새로운 요구사항을 쉽게 수용
-- **호환성 보장**: 기존 코드와의 호환성 최대한 유지
-- **개발자 경험**: 직관적이고 사용하기 쉬운 API
-- **성능 최적화**: 프로덕션 환경에서의 안정성
+   // After: 간단한 사용
+   <DotLottieReact dotLottieRefCallback={hook.handleDotLottieRef} />;
+   ```
