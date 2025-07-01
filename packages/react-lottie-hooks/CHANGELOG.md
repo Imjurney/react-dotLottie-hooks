@@ -4,6 +4,21 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
 
+## [1.2.2] - 2025-07-01
+
+### 📚 Documentation Update
+
+- **README Translation**: Complete translation from Korean to English
+- **API Documentation**: Enhanced English documentation with clearer examples
+- **Code Comments**: Improved code examples with English comments
+- **Professional Presentation**: International-ready documentation
+
+### 🔧 Technical Improvements
+
+- Enhanced code examples for better understanding
+- Improved TypeScript documentation
+- Clearer API reference section
+
 ## [1.2.1] - 2025-07-01
 
 ### 📦 패키지 정보 업데이트

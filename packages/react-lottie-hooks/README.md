@@ -1,25 +1,25 @@
-# 🎯 React Lottie Hooks v1.2.0 (DotLottie)
+# 🎯 React Lottie Hooks v1.2.2 (DotLottie)
 
-**간단하고 강력한 React DotLottie 애니메이션 훅 with GSAP ScrollTrigger**
+**Simple and powerful React hooks for DotLottie animations with GSAP ScrollTrigger**
 
-> ✨ DotLottie 전용으로 최적화된 React 훅으로 스크롤 기반 애니메이션을 쉽게 구현하세요!
+> ✨ Easily implement scroll-based animations with React hooks optimized exclusively for DotLottie!
 >
-> **v1.2.0은 최종 버전입니다** - 안정적이고 완성도 높은 DotLottie 전용 솔루션
+> **v1.2.1 is the stable release** - A mature and reliable DotLottie-only solution
 
-## 🚀 특징
+## 🚀 Features
 
-- 🎨 **DotLottie 전용**: `@lottiefiles/dotlottie-react` 완벽 지원
-- 📱 **SSR/CSR 안전**: Next.js, Remix, React Router 등 SSR 프레임워크 완벽 지원
-- 🎯 **GSAP ScrollTrigger**: 스크롤 기반 애니메이션과 효과
-- 🔧 **TypeScript**: 완전한 타입 안전성
-- 🎪 **간단한 API**: 복잡한 설정 없이 바로 사용 가능
-- ⚡ **최적화**: 성능과 메모리 효율성에 최적화
-- 🎨 **4가지 예제**: Next.js, Vite, Remix, React Router 완전 지원
+- 🎨 **DotLottie Exclusive**: Perfect support for `@lottiefiles/dotlottie-react`
+- 📱 **SSR/CSR Safe**: Full compatibility with SSR frameworks like Next.js, Remix, React Router
+- 🎯 **GSAP ScrollTrigger**: Scroll-based animations and effects
+- 🔧 **TypeScript**: Complete type safety
+- 🎪 **Simple API**: Ready to use without complex configuration
+- ⚡ **Optimized**: Performance and memory efficiency optimized
+- 🎨 **4 Examples**: Complete support for Next.js, Vite, Remix, React Router
 
-## 📦 설치
+## 📦 Installation
 
 ```bash
-# npm (권장)
+# npm (recommended)
 npm install @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 
 # pnpm
@@ -29,7 +29,7 @@ pnpm add @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 yarn add @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 ```
 
-## 🎯 기본 사용법
+## 🎯 Basic Usage
 
 ```tsx
 import React from "react";
@@ -45,11 +45,11 @@ export default function ScrollAnimation() {
 
   return (
     <div>
-      {/* 스크롤 트리거 영역 */}
+      {/* Scroll trigger area */}
       <div ref={triggerRef} style={{ height: "100vh" }}>
-        <h2>스크롤하면 애니메이션이 시작됩니다!</h2>
+        <h2>Animation starts when you scroll!</h2>
 
-        {/* DotLottie 애니메이션 */}
+        {/* DotLottie animation */}
         <DotLottieReact
           src="/animations/my-animation.lottie"
           loop={false}
@@ -59,15 +59,15 @@ export default function ScrollAnimation() {
         />
       </div>
 
-      {isLoaded && <p>애니메이션이 로드되었습니다! ✨</p>}
+      {isLoaded && <p>Animation has been loaded! ✨</p>}
     </div>
   );
 }
 ```
 
-## 🎨 고급 사용법
+## 🎨 Advanced Usage
 
-### GSAP 애니메이션과 함께 사용
+### Using with GSAP Animations
 
 ````tsx
 const {
@@ -80,7 +80,7 @@ const {
   start: "top bottom",
   end: "bottom top",
 
-  // GSAP 애니메이션 효과
+  // GSAP animation effects
   gsapAnimations: {
     scale: 1.2,
     rotation: 360,
@@ -88,45 +88,46 @@ const {
     duration: 2,
     ease: "power2.out",
     trigger: "enter",
-    scrub: true, // 스크롤과 동기화
+    scrub: true, // Sync with scroll
   },
 
-  // 커스텀 이벤트 핸들러
+  // Custom event handlers
   onEnter: (dotLottie) => {
-    console.log("애니메이션 영역 진입!");
+    console.log("Entered animation area!");
     dotLottie.setSpeed(1.5);
   },
+```
 
-### 성능 최적화 사용법
+### Performance Optimized Usage
 
 ```tsx
 function PerformanceOptimizedLottie() {
   const {
     triggerRef,
     handleDotLottieRef,
-    getCurrentFrame, // ref 기반 getter (리랜더링 없음)
-    getIsPlaying,    // ref 기반 getter (리랜더링 없음)
+    getCurrentFrame, // ref-based getter (no re-renders)
+    getIsPlaying,    // ref-based getter (no re-renders)
     play,
     pause,
   } = useLottieScrollTrigger({
-    // React state 추적 비활성화 (기본값: false)
+    // Disable React state tracking (default: false)
     enableStateTracking: false,
 
-    // 콜백을 통한 상태 모니터링
+    // Monitor state through callbacks
     onPlayStateChange: (isPlaying) => {
-      console.log('재생 상태 변경:', isPlaying);
+      console.log('Play state changed:', isPlaying);
     },
     onFrameChange: (frame) => {
-      console.log('프레임 변경:', frame);
-      // 외부 상태나 UI 업데이트 (필요할 때만)
+      console.log('Frame changed:', frame);
+      // Update external state or UI (only when needed)
     },
 
-    // 프레임 업데이트 throttle 조정 (ms)
-    frameUpdateThrottle: 50, // 기본값: 100ms
+    // Adjust frame update throttle (ms)
+    frameUpdateThrottle: 50, // default: 100ms
   });
 
   const handlePlayToggle = () => {
-    // ref 기반으로 현재 상태 확인 (리랜더링 없음)
+    // Check current state via ref (no re-renders)
     if (getIsPlaying()) {
       pause();
     } else {
@@ -143,26 +144,26 @@ function PerformanceOptimizedLottie() {
         dotLottieRefCallback={handleDotLottieRef}
       />
       <button onClick={handlePlayToggle}>
-        재생/일시정지
+        Play/Pause
       </button>
       <div>
-        {/* 현재 프레임은 ref로 가져오기 (리랜더링 없음) */}
-        현재 프레임: {getCurrentFrame()}
+        {/* Get current frame via ref (no re-renders) */}
+        Current frame: {getCurrentFrame()}
       </div>
     </div>
   );
 }
 ````
 
-### 스크롤 진행률 추적
+### Scroll Progress Tracking
 
 ```tsx
 function ScrollProgress() {
   const { triggerRef, handleDotLottieRef } = useLottieScrollTrigger({
     start: "top center",
     end: "bottom center",
-    // v1.2.0에서 onScrollUpdate는 제거되었습니다
-    // 대신 onEnter, onLeave 등의 콜백을 사용하세요
+    // onScrollUpdate has been removed in v1.2.0
+    // Use callbacks like onEnter, onLeave instead
   });
 
   return (
@@ -179,21 +180,21 @@ function ScrollProgress() {
 }
 ```
 
-### SSR 환경에서 안전한 사용
+### Safe Usage in SSR Environment
 
 ```tsx
 // Next.js App Router
 export default function MyPage() {
   const { triggerRef, handleDotLottieRef, isClient, isDOMReady, isLoaded } =
     useLottieScrollTrigger({
-      strictMode: true, // SSR 프레임워크에서 자동 활성화
-      waitForDOMReady: true, // DOM 완전 로드 대기
+      strictMode: true, // Auto-enabled in SSR frameworks
+      waitForDOMReady: true, // Wait for complete DOM load
       debug: true,
     });
 
-  // 클라이언트에서만 렌더링
+  // Render only on client
   if (!isClient || !isDOMReady) {
-    return <div>로딩 중...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -210,7 +211,7 @@ export default function MyPage() {
 }
 ```
 
-## 📋 API 참조
+## 📋 API Reference
 
 ### `useLottieScrollTrigger(options)`
 
@@ -218,46 +219,46 @@ export default function MyPage() {
 
 ```typescript
 interface UseLottieScrollTriggerOptions {
-  // ScrollTrigger 기본 설정
-  start?: string; // 기본값: "top center"
-  end?: string; // 기본값: "bottom 20%"
-  markers?: boolean; // 기본값: development 환경에서만 true
-  pauseOnLoad?: boolean; // 기본값: true
+  // ScrollTrigger basic settings
+  start?: string; // default: "top center"
+  end?: string; // default: "bottom 20%"
+  markers?: boolean; // default: true only in development
+  pauseOnLoad?: boolean; // default: true
 
-  // 디버깅
-  debug?: boolean; // 기본값: false
-  debugLanguage?: "ko" | "en"; // 기본값: "ko"
+  // Debugging
+  debug?: boolean; // default: false
+  debugLanguage?: "ko" | "en"; // default: "ko"
 
-  // SSR/CSR 안전성
-  strictMode?: boolean; // 기본값: SSR 프레임워크에서 자동 true
-  waitForDOMReady?: boolean; // 기본값: SSR 프레임워크에서 자동 true
+  // SSR/CSR safety
+  strictMode?: boolean; // default: auto true in SSR frameworks
+  waitForDOMReady?: boolean; // default: auto true in SSR frameworks
 
-  // 성능 최적화 옵션 (리랜더링 제어)
-  enableStateTracking?: boolean; // 기본값: false (React state 추적 비활성화)
-  frameUpdateThrottle?: number; // 기본값: 100 (ms)
-  onPlayStateChange?: (isPlaying: boolean) => void; // 재생 상태 변경 콜백
-  onFrameChange?: (currentFrame: number) => void; // 프레임 변경 콜백
+  // Performance optimization options (re-render control)
+  enableStateTracking?: boolean; // default: false (disable React state tracking)
+  frameUpdateThrottle?: number; // default: 100 (ms)
+  onPlayStateChange?: (isPlaying: boolean) => void; // Play state change callback
+  onFrameChange?: (currentFrame: number) => void; // Frame change callback
 
-  // DotLottie 이벤트 콜백
+  // DotLottie event callbacks
   onEnter?: (dotLottie: DotLottie) => void;
   onLeave?: (dotLottie: DotLottie) => void;
   onEnterBack?: (dotLottie: DotLottie) => void;
   onLeaveBack?: (dotLottie: DotLottie) => void;
 
-  // GSAP 애니메이션
+  // GSAP animations
   gsapAnimations?: {
-    rotation?: number; // 회전 각도
-    scale?: number; // 크기 배율
-    x?: number; // X축 이동
-    y?: number; // Y축 이동
-    opacity?: number; // 투명도
-    duration?: number; // 애니메이션 지속시간
-    ease?: string; // 이징 함수
+    rotation?: number; // Rotation angle
+    scale?: number; // Scale factor
+    x?: number; // X-axis movement
+    y?: number; // Y-axis movement
+    opacity?: number; // Opacity
+    duration?: number; // Animation duration
+    ease?: string; // Easing function
     trigger?: "enter" | "enterBack" | "leave" | "leaveBack" | "scroll";
-    scrub?: boolean | number; // 스크롤과 동기화
+    scrub?: boolean | number; // Sync with scroll
   };
 
-  // 추가 ScrollTrigger 옵션
+  // Additional ScrollTrigger options
   scrollTriggerOptions?: Partial<ScrollTrigger.StaticVars>;
 }
 ```
@@ -266,29 +267,29 @@ interface UseLottieScrollTriggerOptions {
 
 ```typescript
 interface UseLottieScrollTriggerReturn {
-  // 필수 ref들
+  // Required refs
   triggerRef: React.RefObject<HTMLDivElement>;
   handleDotLottieRef: (dotLottie: DotLottie | null) => void;
 
-  // DotLottie 인스턴스와 상태
+  // DotLottie instance and state
   dotLottie: DotLottie | null;
   isDotLottieLoaded: boolean;
 
-  // 제어 함수들
+  // Control functions
   play: () => void;
   pause: () => void;
   stop: () => void;
   setFrame: (frame: number) => void;
 
-  // 성능 최적화된 상태 접근
-  getCurrentFrame: () => number; // ref 기반 getter (리랜더링 없음)
-  getIsPlaying: () => boolean; // ref 기반 getter (리랜더링 없음)
+  // Performance optimized state access
+  getCurrentFrame: () => number; // ref-based getter (no re-renders)
+  getIsPlaying: () => boolean; // ref-based getter (no re-renders)
 
-  // React state (enableStateTracking이 true일 때만 업데이트)
-  isPlaying: boolean; // enableStateTracking이 false면 항상 false
-  currentFrame: number; // enableStateTracking이 false면 항상 0
+  // React state (updates only when enableStateTracking is true)
+  isPlaying: boolean; // always false if enableStateTracking is false
+  currentFrame: number; // always 0 if enableStateTracking is false
 
-  // 환경 및 로딩 상태
+  // Environment and loading state
   isMounted: boolean;
   isDOMReady: boolean;
   isClient: boolean;
@@ -299,142 +300,142 @@ interface UseLottieScrollTriggerReturn {
 }
 ```
 
-## ⚡ 성능 최적화
+## ⚡ Performance Optimization
 
-### 리랜더링 최소화
+### Minimize Re-renders
 
-기본적으로 `useLottieScrollTrigger`는 성능을 위해 React state 추적을 비활성화합니다:
+By default, `useLottieScrollTrigger` disables React state tracking for performance:
 
 ```typescript
-// 🚀 고성능 모드 (기본값)
+// 🚀 High performance mode (default)
 const { getCurrentFrame, getIsPlaying } = useLottieScrollTrigger({
-  enableStateTracking: false, // 기본값
+  enableStateTracking: false, // default
 });
 
-// ref 기반으로 상태 확인 (리랜더링 없음)
-console.log(getCurrentFrame()); // 현재 프레임
-console.log(getIsPlaying()); // 재생 상태
+// Check state via ref (no re-renders)
+console.log(getCurrentFrame()); // Current frame
+console.log(getIsPlaying()); // Play state
 ```
 
-### 선택적 상태 추적
+### Selective State Tracking
 
-UI에서 애니메이션 상태를 표시해야 할 때만 활성화:
+Enable only when you need to display animation state in UI:
 
 ```typescript
-// 🎯 필요할 때만 상태 추적
+// 🎯 Track state only when needed
 const { isPlaying, currentFrame } = useLottieScrollTrigger({
-  enableStateTracking: true, // React state 업데이트 활성화
-  frameUpdateThrottle: 200, // 프레임 업데이트를 200ms로 제한
+  enableStateTracking: true, // Enable React state updates
+  frameUpdateThrottle: 200, // Limit frame updates to 200ms
   onFrameChange: (frame) => {
-    // 외부 상태 관리나 UI 업데이트
+    // External state management or UI updates
     setExternalState(frame);
   },
 });
 ```
 
-### 콜백 기반 상태 모니터링
+### Callback-based State Monitoring
 
 ```typescript
-// 📊 콜백으로 성능 최적화
+// 📊 Performance optimization with callbacks
 const { play, pause } = useLottieScrollTrigger({
-  enableStateTracking: false, // 리랜더링 방지
+  enableStateTracking: false, // Prevent re-renders
   onPlayStateChange: (isPlaying) => {
-    // 필요한 경우에만 외부 상태 업데이트
+    // Update external state only when needed
     updateExternalPlayState(isPlaying);
   },
   onFrameChange: (frame) => {
-    // progress bar 업데이트 등
+    // Update progress bar etc.
     updateProgressBar(frame);
   },
 });
 ```
 
-### 프레임 업데이트 throttling
+### Frame Update Throttling
 
 ```typescript
 const hook = useLottieScrollTrigger({
-  frameUpdateThrottle: 100, // 기본값: 100ms (10fps)
-  // frameUpdateThrottle: 16,  // 60fps가 필요한 경우
-  // frameUpdateThrottle: 50,  // 20fps로 절충
+  frameUpdateThrottle: 100, // default: 100ms (10fps)
+  // frameUpdateThrottle: 16,  // For 60fps when needed
+  // frameUpdateThrottle: 50,  // 20fps compromise
 });
 ```
 
-### 성능 모니터링
+### Performance Monitoring
 
 ```typescript
 const hook = useLottieScrollTrigger({
-  debug: true, // 콘솔에서 성능 로그 확인
+  debug: true, // Check performance logs in console
   onFrameChange: (frame) => {
-    console.log(`프레임 업데이트: ${frame}`);
+    console.log(`Frame update: ${frame}`);
   },
 });
 ```
 
-## 🛠️ 문제해결
+## 🛠️ Troubleshooting
 
-### 일반적인 문제들
+### Common Issues
 
-**Q: 애니메이션이 재생되지 않아요**
+**Q: Animation won't play**
 
 ```typescript
-// 1. DotLottie 로드 상태 확인
+// 1. Check DotLottie load status
 const { isLoaded, isDotLottieLoaded } = useLottieScrollTrigger({ debug: true });
 
-// 2. autoplay를 false로 설정했는지 확인
+// 2. Make sure autoplay is set to false
 <DotLottieReact autoplay={false} />;
 
-// 3. pauseOnLoad 옵션 확인
-useLottieScrollTrigger({ pauseOnLoad: true }); // 로드 후 일시정지
+// 3. Check pauseOnLoad option
+useLottieScrollTrigger({ pauseOnLoad: true }); // Pause after load
 ```
 
-**Q: SSR 환경에서 에러가 발생해요**
+**Q: Getting errors in SSR environment**
 
 ```typescript
-// strictMode와 waitForDOMReady 활성화
+// Enable strictMode and waitForDOMReady
 const hook = useLottieScrollTrigger({
   strictMode: true,
   waitForDOMReady: true,
 });
 
-// 클라이언트에서만 렌더링
+// Render only on client
 if (!hook.isClient || !hook.isDOMReady) {
   return <div>Loading...</div>;
 }
 ```
 
-**Q: ScrollTrigger가 작동하지 않아요**
+**Q: ScrollTrigger not working**
 
 ```typescript
-// 1. triggerRef가 올바르게 설정되었는지 확인
+// 1. Check if triggerRef is properly set
 <div ref={triggerRef}>
   <DotLottieReact dotLottieRefCallback={handleDotLottieRef} />
 </div>
 
-// 2. GSAP가 올바르게 설치되었는지 확인
+// 2. Verify GSAP is correctly installed
 npm list gsap
 
-// 3. 디버그 모드로 문제 확인
+// 3. Debug the issue with debug mode
 useLottieScrollTrigger({ debug: true, markers: true })
 ```
 
-## 🤝 기여하기
+## 🤝 Contributing
 
-1. 이 저장소를 포크하세요
-2. 기능 브랜치를 만드세요 (`git checkout -b feature/amazing-feature`)
-3. 변경사항을 커밋하세요 (`git commit -m 'feat: add amazing feature'`)
-4. 브랜치에 푸시하세요 (`git push origin feature/amazing-feature`)
-5. Pull Request를 열어주세요
+1. Fork this repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 라이선스
+## 📄 License
 
-MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 감사의 말
+## 🙏 Acknowledgments
 
-- [@lottiefiles/dotlottie-react](https://github.com/LottieFiles/dotlottie-react) - 훌륭한 DotLottie React 컴포넌트
-- [GSAP](https://greensock.com/gsap/) - 강력한 애니메이션 라이브러리
-- React 커뮤니티의 모든 기여자들
+- [@lottiefiles/dotlottie-react](https://github.com/LottieFiles/dotlottie-react) - Excellent DotLottie React component
+- [GSAP](https://greensock.com/gsap/) - Powerful animation library
+- All contributors in the React community
 
 ---
 
-**💡 더 많은 예제와 문서는 [GitHub Repository](https://github.com/your-username/your-repo-name)에서 확인하세요!**
+**💡 For more examples and documentation, visit the [GitHub Repository](https://github.com/Imjurney/react-dotLottie-hooks)!**
