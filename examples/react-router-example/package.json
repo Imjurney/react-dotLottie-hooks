@@ -9,7 +9,7 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@Imjurney/react-lottie-hooks": "workspace:*",
+    "@jurneyx2/react-lottie-hooks": "workspace:*",
     "@gsap/react": "^2.1.2",
     "@lottiefiles/dotlottie-react": "^0.8.12",
     "@react-router/node": "^7.5.3",

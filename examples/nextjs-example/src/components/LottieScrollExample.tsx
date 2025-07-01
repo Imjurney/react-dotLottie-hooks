@@ -1,6 +1,6 @@
 "use client";
 
-import { useLottieScrollTrigger } from "@Imjurney/react-lottie-hooks";
+import { useLottieScrollTrigger } from "@jurneyx2/react-lottie-hooks";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useState } from "react";
 
