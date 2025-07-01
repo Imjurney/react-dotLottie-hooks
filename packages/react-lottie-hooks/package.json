@@ -1,5 +1,5 @@
 {
-  "name": "@Imjurney/react-lottie-hooks",
+  "name": "@jurneyx2/react-lottie-hooks",
   "version": "1.2.0",
   "description": "🎯 Simple and powerful React hooks for DotLottie animations with GSAP ScrollTrigger integration and automatic SSR/CSR detection",
   "main": "dist/index.js",
@@ -49,20 +49,20 @@
     "simple",
     "modern"
   ],
-  "author": "Imjurney <your.email@example.com>",
+  "author": "Imjurney",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/your-repo-name.git",
+    "url": "git+https://github.com/Imjurney/react-dotLottie-hooks.git",
     "directory": "packages/react-lottie-hooks"
   },
-  "homepage": "https://github.com/your-username/your-repo-name#readme",
+  "homepage": "https://github.com/Imjurney/react-dotLottie-hooks#readme",
   "bugs": {
-    "url": "https://github.com/your-username/your-repo-name/issues"
+    "url": "https://github.com/Imjurney/react-dotLottie-hooks/issues"
   },
   "funding": {
     "type": "github",
-    "url": "https://github.com/sponsors/your-username"
+    "url": "https://github.com/sponsors/Imjurney"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

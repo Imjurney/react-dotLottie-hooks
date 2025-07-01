@@ -19,14 +19,14 @@
 ## 📦 설치
 
 ```bash
-# pnpm (권장)
-pnpm add @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
+# npm (권장)
+npm install @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 
-# npm
-npm install @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
+# pnpm
+pnpm add @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 
 # yarn
-yarn add @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
+yarn add @jurneyx2/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 ```
 
 ## 🎯 기본 사용법
@@ -34,7 +34,7 @@ yarn add @Imjurney/react-lottie-hooks @lottiefiles/dotlottie-react gsap
 ```tsx
 import React from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { useLottieScrollTrigger } from "@Imjurney/react-lottie-hooks";
+import { useLottieScrollTrigger } from "@jurneyx2/react-lottie-hooks";
 
 export default function ScrollAnimation() {
   const { triggerRef, handleDotLottieRef, isLoaded } = useLottieScrollTrigger({
