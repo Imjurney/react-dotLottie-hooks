@@ -81,7 +81,7 @@ export default function MyComponent() {
 **주요 특징:**
 
 - 🎨 **DotLottie 전용**: `@lottiefiles/dotlottie-react` 완벽 지원
-- 📱 **SSR/CSR 안전**: Next.js, Nuxt.js 등 완벽 지원
+- 📱 **SSR/CSR 안전**: Next.js, Remix.js 등 완벽 지원
 - 🎯 **GSAP ScrollTrigger**: 스크롤 기반 애니메이션
 - 🔧 **TypeScript**: 완전한 타입 안전성
 - ⚡ **최적화**: 성능과 메모리 효율성
