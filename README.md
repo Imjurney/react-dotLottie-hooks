@@ -1,10 +1,10 @@
-# 🎯 React DotLottie Hooks v1.2.6
+# 🎯 React DotLottie Hooks v1.2.7
 
 **모던한 React 애플리케이션을 위한 간단하고 강력한 DotLottie 애니메이션 훅**
 
 > ✨ DotLottie + GSAP ScrollTrigger로 멋진 스크롤 애니메이션을 쉽게 만들어보세요!
 >
-> **v1.2.6은 최신 안정 버전입니다** - 4가지 주요 React 프레임워크 완전 지원
+> **v1.2.7은 최신 안정 버전입니다** - 4가지 주요 React 프레임워크 완전 지원
 
 ## 📁 프로젝트 구조
 
@@ -215,7 +215,7 @@ cd examples/nextjs-example
 pnpm dev
 ```
 
-## 🆚 v1.2.6 주요 특징 (최신 버전)
+## 🆚 v1.2.7 주요 특징 (최신 버전)
 
 ### ✨ 새로운 개선사항
 
