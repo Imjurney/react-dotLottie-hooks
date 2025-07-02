@@ -253,11 +253,11 @@ pnpm dev
 
 ## 📄 라이선스
 
-MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+MIT License - 자세한 내용은 [LICENSE](./LICENSE) 파일을 참조하세요.
 
 ## 🙏 감사의 말
 
-- [@lottiefiles/dotlottie-react](https://github.com/LottieFiles/dotlottie-react) - 훌륭한 DotLottie React 컴포넌트
+- [@lottiefiles/dotlottie-react](https://github.com/LottieFiles/dotlottie-web) - 훌륭한 DotLottie React 컴포넌트
 - [GSAP](https://greensock.com/gsap/) - 강력한 애니메이션 라이브러리
 - React 커뮤니티의 모든 기여자들
 
