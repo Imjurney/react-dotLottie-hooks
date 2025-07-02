@@ -4,6 +4,27 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
 
+# Changelog
+
+이 프로젝트의 모든 중요한 변경사항이 이 파일에 문서화됩니다.
+
+이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
+
+## [1.2.4] - 2025-07-02
+
+### 🐛 Bug Fixes
+
+- **SSR 안전성**: `__remixContext` 접근 시 발생하는 `useContext` 오류 수정
+- **프레임워크 감지**: DOM 준비 상태를 확인하여 더 안전한 Remix/React Router 감지
+- **초기화 순서**: GSAP 및 프레임워크 감지 초기화 오류 처리 개선
+- **메모리 안전성**: try-catch 블록 추가하여 브라우저 호환성 개선
+
+### 🔧 Improvements
+
+- **에러 핸들링**: 프레임워크 감지 실패 시 안전한 기본값 반환
+- **DOM 검사**: `document.readyState`를 체크하여 안전한 DOM 접근
+- **디버그 로그**: 프레임워크 재감지 상황에 대한 로그 추가
+
 ## [1.2.3] - 2025-07-01
 
 ### 📚 Documentation Enhancement

@@ -9,8 +9,9 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@jurneyx2/react-lottie-hooks": "workspace:^1.2.4",
+  
     "@gsap/react": "^2.1.2",
-    "@jurneyx2/react-lottie-hooks": "workspace:../../packages/react-lottie-hooks",
     "@lottiefiles/dotlottie-react": "^0.8.12",
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
@@ -22,7 +23,7 @@
   },
   "devDependencies": {
     "@react-router/dev": "^7.5.3",
-    "@tailwindcss/vite": "^4.1.11",
+    "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",

@@ -39,6 +39,49 @@ const DEBUG_LANGUAGE = {
     ssrDetected: "SSR 환경 감지됨. 클라이언트 마운트 대기중...",
     frameworkDetected: (framework: string) => `${framework} 프레임워크 감지됨`,
     safeDefaultsApplied: "SSR 프레임워크용 안전한 기본값 적용됨",
+
+    // 프레임워크 감지
+    frameworkDetectionFailed: "프레임워크 감지 실패:",
+    frameworkDetectionUpdated: "프레임워크 감지 업데이트됨:",
+    frameworkDetectionUpdatedAfterDOM:
+      "DOM 로드 후 프레임워크 감지 업데이트됨:",
+    frameworkReDetectionFailed: "프레임워크 재감지 실패:",
+    frameworkReDetectionAfterDOMFailed: "DOM 로드 후 프레임워크 재감지 실패:",
+    gsapInitFailed: "GSAP 또는 프레임워크 감지 초기화 실패:",
+
+    // 초기 프레임워크 감지 (최상위 수준)
+    initialFrameworkDetectionFailed: "프레임워크 감지 실패:",
+    initialGSAPInitFailed: "GSAP 또는 프레임워크 감지 초기화 실패:",
+
+    // SSR 환경
+    ssrEnvironmentMessage: "SSR 환경에서는 ScrollTrigger를 사용할 수 없습니다.",
+
+    // DotLottie 로딩
+    dotLottieNotLoaded: "DotLottie가 아직 로드되지 않았습니다.",
+
+    // 이벤트 로그
+    dotLottiePlayEvent: "DotLottie 재생 이벤트",
+    dotLottiePauseEvent: "DotLottie 일시정지 이벤트",
+    dotLottieStopEvent: "DotLottie 정지 이벤트",
+
+    // 제어 함수 로그
+    playThrottled: "Play 호출이 throttle되었습니다.",
+    pauseThrottled: "Pause 호출이 throttle되었습니다.",
+    stopThrottled: "Stop 호출이 throttle되었습니다.",
+    playExecuted: "Play 실행됨",
+    pauseExecuted: "Pause 실행됨",
+    stopExecuted: "Stop 실행됨",
+    setFrameExecuted: (frame: number) => `SetFrame 실행됨: ${frame}`,
+
+    // 에러 메시지
+    playExecutionError: "Play 실행 중 오류:",
+    pauseExecutionError: "Pause 실행 중 오류:",
+    stopExecutionError: "Stop 실행 중 오류:",
+    setFrameExecutionError: "SetFrame 실행 중 오류:",
+
+    // GSAP 애니메이션
+    gsapAnimationExecution: (trigger: string) =>
+      `GSAP 애니메이션 실행: ${trigger}`,
   },
   en: {
     // Loading related
@@ -72,14 +115,58 @@ const DEBUG_LANGUAGE = {
     playError: "Failed to play animation:",
     pauseError: "Failed to pause animation:",
 
-    // Condition checks
+    // 조건 체크
     conditionNotMet: "ScrollTrigger creation conditions not met:",
 
-    // Environment related
+    // 환경 관련
     domNotReady: "DOM not ready. Waiting...",
     ssrDetected: "SSR environment detected. Waiting for client mount...",
     frameworkDetected: (framework: string) => `${framework} framework detected`,
     safeDefaultsApplied: "Safe defaults applied for SSR framework",
+
+    // 프레임워크 감지
+    frameworkDetectionFailed: "Framework detection failed:",
+    frameworkDetectionUpdated: "Framework detection updated:",
+    frameworkDetectionUpdatedAfterDOM:
+      "Framework detection updated after DOM loaded:",
+    frameworkReDetectionFailed: "Framework re-detection failed:",
+    frameworkReDetectionAfterDOMFailed:
+      "Framework re-detection after DOM loaded failed:",
+    gsapInitFailed: "GSAP or framework detection initialization failed:",
+
+    // 초기 프레임워크 감지 (최상위 수준)
+    initialFrameworkDetectionFailed: "Framework detection failed:",
+    initialGSAPInitFailed: "GSAP or framework detection initialization failed:",
+
+    // SSR 환경
+    ssrEnvironmentMessage: "ScrollTrigger cannot be used in SSR environment.",
+
+    // DotLottie 로딩
+    dotLottieNotLoaded: "DotLottie is not loaded yet.",
+
+    // 이벤트 로그
+    dotLottiePlayEvent: "DotLottie play event",
+    dotLottiePauseEvent: "DotLottie pause event",
+    dotLottieStopEvent: "DotLottie stop event",
+
+    // 제어 함수 로그
+    playThrottled: "Play call was throttled.",
+    pauseThrottled: "Pause call was throttled.",
+    stopThrottled: "Stop call was throttled.",
+    playExecuted: "Play executed",
+    pauseExecuted: "Pause executed",
+    stopExecuted: "Stop executed",
+    setFrameExecuted: (frame: number) => `SetFrame executed: ${frame}`,
+
+    // 에러 메시지
+    playExecutionError: "Error during play execution:",
+    pauseExecutionError: "Error during pause execution:",
+    stopExecutionError: "Error during stop execution:",
+    setFrameExecutionError: "Error during setFrame execution:",
+
+    // GSAP 애니메이션
+    gsapAnimationExecution: (trigger: string) =>
+      `GSAP animation execution: ${trigger}`,
   },
 };
 
