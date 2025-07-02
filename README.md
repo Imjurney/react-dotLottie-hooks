@@ -1,10 +1,10 @@
-# 🎯 React DotLottie Hooks v1.2.3
+# 🎯 React DotLottie Hooks v1.2.6
 
 **모던한 React 애플리케이션을 위한 간단하고 강력한 DotLottie 애니메이션 훅**
 
 > ✨ DotLottie + GSAP ScrollTrigger로 멋진 스크롤 애니메이션을 쉽게 만들어보세요!
 >
-> **v1.2.3은 최종 안정 버전입니다** - 4가지 주요 React 프레임워크 완전 지원
+> **v1.2.6은 최신 안정 버전입니다** - 4가지 주요 React 프레임워크 완전 지원
 
 ## 📁 프로젝트 구조
 
@@ -215,9 +215,22 @@ cd examples/nextjs-example
 pnpm dev
 ```
 
-## 🆚 v1.2.3 주요 특징 (최종 버전)
+## 🆚 v1.2.6 주요 특징 (최신 버전)
 
-### ✅ 개선된 점
+### ✨ 새로운 개선사항
+
+- **🌍 완전한 다국어 지원**: 모든 디버그 메시지가 한국어/영어 지원
+  ```tsx
+  const hook = useLottieScrollTrigger({
+    debug: true,
+    debugLanguage: "en", // "ko" | "en"
+  });
+  ```
+- **🔧 ES Module 호환성**: 모든 번들러(Vite, Webpack, esbuild)에서 안정적 동작
+- **📦 모듈 해결 개선**: `gsap/ScrollTrigger` 경로로 표준화
+- **🛠️ 개발자 경험**: 언어별 디버그 메시지로 더 나은 개발 경험
+
+### ✅ 기존 버전 대비 개선된 점
 
 - **단순화**: DotLottie 전용으로 API가 훨씬 간단해졌습니다
 - **성능**: 단일 라이브러리 지원으로 번들 크기 감소

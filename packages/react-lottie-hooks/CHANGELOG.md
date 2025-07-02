@@ -10,6 +10,34 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
 
+## [1.2.6] - 2025-07-02
+
+### 🐛 Bug Fixes
+
+- **ES Module 호환성**: `gsap/dist/ScrollTrigger` → `gsap/ScrollTrigger` import 경로 수정
+- **모듈 해결 문제**: ESM 환경에서 GSAP ScrollTrigger 가져오기 오류 해결
+- **빌드 최적화**: CommonJS와 ESM 모두에서 안정적인 빌드 지원
+
+### 🌍 Internationalization
+
+- **완전한 다국어 지원**: 모든 디버그 메시지가 한국어/영어 지원
+- **일관된 메시지 시스템**: 하드코딩된 영어 메시지를 `DEBUG_LANGUAGE` 시스템으로 통합
+- **새로운 메시지 키**:
+  - `initialFrameworkDetectionFailed` (프레임워크 감지 실패)
+  - `initialGSAPInitFailed` (GSAP 초기화 실패)
+
+### 🔧 Technical Improvements
+
+- **표준화된 오류 처리**: 프레임워크 감지 및 GSAP 초기화 오류 메시지 표준화
+- **크로스 플랫폼 호환성**: 다양한 번들러(Vite, Webpack, esbuild 등)에서 안정적 동작
+- **개발자 경험 개선**: `debugLanguage` 옵션으로 선호하는 언어로 디버그 메시지 확인 가능
+
+## [1.2.5] - 2025-07-02
+
+### 🔧 Internal Improvements
+
+- **코드 리팩토링**: 내부 로직 최적화 및 안정성 개선
+
 ## [1.2.4] - 2025-07-02
 
 ### 🐛 Bug Fixes

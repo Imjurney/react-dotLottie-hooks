@@ -1,10 +1,10 @@
-# 🎯 React Lottie Hooks v1.2.3 (DotLottie)
+# 🎯 React Lottie Hooks v1.2.6 (DotLottie)
 
 **Simple and powerful React hooks for DotLottie animations with GSAP ScrollTrigger**
 
 > ✨ Easily implement scroll-based animations with React hooks optimized exclusively for DotLottie!
 >
-> **v1.2.2 is the stable release** - A mature and reliable DotLottie-only solution
+> **v1.2.6 is the latest stable release** - Enhanced with full internationalization and ES Module compatibility
 
 🚀 **[View Live Examples](https://github.com/Imjurney/react-dotLottie-hooks/tree/main/examples)** | 📦 **[NPM Package](https://www.npmjs.com/package/@jurneyx2/react-lottie-hooks)** | 📚 **[Documentation](https://github.com/Imjurney/react-dotLottie-hooks)**
 
@@ -17,6 +17,36 @@
 - 🎪 **Simple API**: Ready to use without complex configuration
 - ⚡ **Optimized**: Performance and memory efficiency optimized
 - 🎨 **4 Complete Examples**: Next.js, Vite, Remix, and React Router implementations with full source code
+- 🌍 **Internationalization**: Debug messages in Korean and English
+- 📦 **ES Module Compatible**: Works with all modern bundlers (Vite, Webpack, esbuild)
+
+## 🆕 What's New in v1.2.6
+
+### 🌍 Full Internationalization Support
+
+Debug messages are now available in both Korean and English:
+
+```tsx
+const hook = useLottieScrollTrigger({
+  debug: true,
+  debugLanguage: "en", // "ko" | "en" (default: "ko")
+});
+```
+
+### 📦 Enhanced ES Module Compatibility
+
+Fixed import path issues across all modern bundlers:
+
+- ✅ **Vite**: Seamless integration
+- ✅ **Webpack**: No module resolution errors
+- ✅ **esbuild**: Optimized bundling
+- ✅ **Rollup**: Perfect tree-shaking
+
+### 🛠️ Developer Experience Improvements
+
+- **Better Error Messages**: Clear, localized error messages
+- **Cross-Platform Compatibility**: Works consistently across all environments
+- **Standardized Messaging**: All debug outputs use the centralized language system
 
 ## 📦 Installation
 
