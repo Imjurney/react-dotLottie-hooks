@@ -167,15 +167,6 @@ pnpm dev
 - **⚡ 성능 모니터링**: 프레임률 및 상태 추적
 - **🔄 모드 전환**: 스크롤/수동 제어 모드 토글
 
-### 📸 스크린샷 갤러리
-
-| 프레임워크       | 데스크톱 뷰                                                    | 모바일 뷰                                                    |
-| ---------------- | -------------------------------------------------------------- | ------------------------------------------------------------ |
-| **Next.js**      | ![Desktop](./docs/assets/screenshots/nextjs-desktop.png)       | ![Mobile](./docs/assets/screenshots/nextjs-mobile.png)       |
-| **Vite**         | ![Desktop](./docs/assets/screenshots/vite-desktop.png)         | ![Mobile](./docs/assets/screenshots/vite-mobile.png)         |
-| **Remix**        | ![Desktop](./docs/assets/screenshots/remix-desktop.png)        | ![Mobile](./docs/assets/screenshots/remix-mobile.png)        |
-| **React Router** | ![Desktop](./docs/assets/screenshots/react-router-desktop.png) | ![Mobile](./docs/assets/screenshots/react-router-mobile.png) |
-
 ## 🛠️ 개발
 
 ### 요구사항
