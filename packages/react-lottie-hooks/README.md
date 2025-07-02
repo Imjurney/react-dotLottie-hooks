@@ -1,10 +1,10 @@
-# 🎯 React Lottie Hooks v1.2.6 (DotLottie)
+# 🎯 React Lottie Hooks v1.2.7 (DotLottie)
 
 **Simple and powerful React hooks for DotLottie animations with GSAP ScrollTrigger**
 
 > ✨ Easily implement scroll-based animations with React hooks optimized exclusively for DotLottie!
 >
-> **v1.2.6 is the latest stable release** - Enhanced with full internationalization and ES Module compatibility
+> **v1.2.7 is the latest stable release** - Enhanced with full internationalization, ES Module compatibility, and security improvements
 
 🚀 **[View Live Examples](https://github.com/Imjurney/react-dotLottie-hooks/tree/main/examples)** | 📦 **[NPM Package](https://www.npmjs.com/package/@jurneyx2/react-lottie-hooks)** | 📚 **[Documentation](https://github.com/Imjurney/react-dotLottie-hooks)**
 
@@ -20,33 +20,35 @@
 - 🌍 **Internationalization**: Debug messages in Korean and English
 - 📦 **ES Module Compatible**: Works with all modern bundlers (Vite, Webpack, esbuild)
 
-## 🆕 What's New in v1.2.6
+## 🆕 What's New in v1.2.7
 
-### 🌍 Full Internationalization Support
+### 🔒 Security & Performance Improvements
 
-Debug messages are now available in both Korean and English:
+Enhanced library security and bundle optimization:
 
 ```tsx
-const hook = useLottieScrollTrigger({
-  debug: true,
-  debugLanguage: "en", // "ko" | "en" (default: "ko")
-});
+// No source maps in production builds for better security
+// Reduced bundle size and protected source code
 ```
 
 ### 📦 Enhanced ES Module Compatibility
 
-Fixed import path issues across all modern bundlers:
+Improved GSAP ScrollTrigger integration for React Router v7:
 
-- ✅ **Vite**: Seamless integration
-- ✅ **Webpack**: No module resolution errors
-- ✅ **esbuild**: Optimized bundling
-- ✅ **Rollup**: Perfect tree-shaking
+```tsx
+// Automatic handling of .js extensions in ESM environments
+// Perfect compatibility with React Router v7 framework mode
+const hook = useLottieScrollTrigger({
+  start: "top center",
+  end: "bottom center",
+});
+```
 
-### 🛠️ Developer Experience Improvements
+### 🛠️ Build Optimizations
 
-- **Better Error Messages**: Clear, localized error messages
-- **Cross-Platform Compatibility**: Works consistently across all environments
-- **Standardized Messaging**: All debug outputs use the centralized language system
+- **Security**: Removed source maps from production builds
+- **Bundle Size**: Optimized output size for better performance
+- **ESM Support**: Enhanced compatibility with strict ESM environments
 
 ## 📦 Installation
 

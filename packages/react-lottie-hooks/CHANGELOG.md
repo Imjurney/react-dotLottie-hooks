@@ -10,6 +10,26 @@
 
 이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html)을 따릅니다.
 
+## [1.2.7] - 2025-07-02
+
+### 🔒 Security & Performance
+
+- **Source Map 제거**: 프로덕션 빌드에서 소스맵 비활성화로 보안 강화
+- **번들 크기 최적화**: 소스맵 제거로 배포 패키지 크기 감소
+- **소스 코드 보호**: 원본 소스 코드가 브라우저에서 노출되지 않도록 개선
+
+### 📦 Enhanced ESM Compatibility
+
+- **React Router v7 지원**: Framework mode에서 완벽한 ESM 호환성
+- **GSAP ScrollTrigger 최적화**: esbuild alias를 통한 자동 .js 확장자 해결
+- **빌드 시점 해결**: 소스 코드 변경 없이 번들링 시 자동 경로 변환
+
+### 🛠️ Technical Improvements
+
+- **tsup 설정 최적화**: ESM 환경에서 GSAP import 이슈 완전 해결
+- **하위 호환성**: 기존 CJS/ESM 환경 모두 지원 유지
+- **타입 안전성**: TypeScript 타입 정의 문제 해결
+
 ## [1.2.6] - 2025-07-02
 
 ### 🐛 Bug Fixes

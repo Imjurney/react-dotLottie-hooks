@@ -11,7 +11,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@jurneyx2/react-lottie-hooks": "workspace:*",
+    "@jurneyx2/react-lottie-hooks": "^1.2.7",
     "@gsap/react": "^2.1.1",
     "@lottiefiles/dotlottie-react": "^0.8.12",
     "@remix-run/node": "^2.15.1",

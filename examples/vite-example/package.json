@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@jurneyx2/react-lottie-hooks": "workspace:*",
+    "@jurneyx2/react-lottie-hooks": "^1.2.7",
     "@gsap/react": "^2.1.1",
     "@lottiefiles/dotlottie-react": "^0.8.12",
     "gsap": "^3.12.5",
