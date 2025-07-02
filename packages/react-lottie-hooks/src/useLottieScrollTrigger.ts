@@ -4,39 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DotLottie } from "@lottiefiles/dotlottie-react";
 import { gsap } from "gsap";
 import DEBUG_LANGUAGE from "./language";
-
-const detectSSRFramework = () => {
-  if (!isClient)
-    return { isNextJS: false, isRemix: false, isSSRFramework: false };
-
-  try {
-    const isNextJS = !!(window as any).__NEXT_DATA__;
-
-    let isRemix = false;
-
-    if (document.readyState !== "loading") {
-      isRemix = !!(
-        (window as any).__remixContext ||
-        (window as any).__remixRouteModules ||
-        (window as any).__remixManifest ||
-        document.querySelector("script[data-remix]") ||
-        document.querySelector("[data-remix-root]")
-      );
-    }
-
-    return {
-      isNextJS,
-      isRemix,
-      isSSRFramework: isNextJS || isRemix,
-    };
-  } catch (error) {
-    const tempMsg = DEBUG_LANGUAGE["ko"]; // 임시로 기본 언어 사용
-    console.warn(tempMsg.initialFrameworkDetectionFailed, error);
-    return { isNextJS: false, isRemix: false, isSSRFramework: false };
-  }
-};
-
-const isClient = typeof window !== "undefined";
+import { detectSSRFramework, isClient } from "./utils/detectSSRFramework";
 
 let detectedFramework = {
   isNextJS: false,
@@ -133,6 +101,34 @@ export interface UseLottieScrollTriggerReturn {
 export const useLottieScrollTrigger = (
   options: UseLottieScrollTriggerOptions = {}
 ): UseLottieScrollTriggerReturn => {
+  // SSR 안전성: 서버에서는 기본값만 반환
+  if (!isClient) {
+    const safeRefs = {
+      triggerRef: { current: null } as React.RefObject<HTMLDivElement>,
+      lottieContainerRef: { current: null } as React.RefObject<HTMLDivElement>,
+    };
+
+    return {
+      ...safeRefs,
+      isMounted: false,
+      isDOMReady: false,
+      isClient: false,
+      isLoaded: false,
+      handleDotLottieRef: () => {},
+      dotLottie: null,
+      isDotLottieLoaded: false,
+      play: () => {},
+      pause: () => {},
+      stop: () => {},
+      setFrame: () => {},
+      getCurrentFrame: () => 0,
+      getIsPlaying: () => false,
+      isPlaying: false,
+      currentFrame: 0,
+      isSSRFramework: false,
+    };
+  }
+
   const {
     start = "top center",
     end = "bottom 20%",

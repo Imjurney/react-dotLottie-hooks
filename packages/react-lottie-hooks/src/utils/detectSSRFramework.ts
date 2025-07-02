@@ -1,3 +1,5 @@
+import DEBUG_LANGUAGE from "../language";
+
 export interface FrameworkDetectionResult {
   isNextJS: boolean;
   isRemix: boolean;
@@ -39,7 +41,8 @@ export const detectSSRFramework = (): FrameworkDetectionResult => {
       isSSRFramework: isNextJS || isRemix,
     };
   } catch (error) {
-    console.warn("Framework detection failed:", error);
+    const tempMsg = DEBUG_LANGUAGE["ko"]; // 임시로 기본 언어 사용
+    console.warn(tempMsg.initialFrameworkDetectionFailed, error);
     return { isNextJS: false, isRemix: false, isSSRFramework: false };
   }
 };

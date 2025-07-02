@@ -3,11 +3,11 @@ import { LottieScrollExample } from "../components/LottieScrollExample";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "React Router + DotLottie ScrollTrigger 예제" },
+    { title: "React Router + DotLottie ScrollTrigger Example" },
     {
       name: "description",
       content:
-        "React Router에서 DotLottie와 GSAP ScrollTrigger를 활용한 애니메이션 예제",
+        "Animation example using DotLottie and GSAP ScrollTrigger in React Router",
     },
   ];
 }
@@ -21,8 +21,11 @@ export default function Home() {
             React Router + DotLottie ScrollTrigger
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            React Router 애플리케이션에서 DotLottie와 GSAP ScrollTrigger를
-            활용한 스크롤 기반 애니메이션 예제입니다.
+            Animation example using DotLottie and GSAP ScrollTrigger in React
+            Router.
+            <br />
+            This example automatically controls animations based on scroll
+            position.
           </p>
         </div>
 

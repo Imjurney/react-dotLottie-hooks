@@ -142,7 +142,7 @@ export function LottieScrollExample() {
 
           <div className="w-80 h-80 md:w-64 md:h-64 mx-auto mb-8 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
             <DotLottieReact
-              src="./animation.lottie"
+              src="./demo.lottie"
               dotLottieRefCallback={handleDotLottieRef}
               autoplay={false}
               loop={true}

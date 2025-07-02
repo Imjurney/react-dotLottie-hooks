@@ -1,67 +1,67 @@
-import { useLottieScrollTrigger } from '@jurneyx2/react-lottie-hooks';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { useState } from 'react';
+import { useLottieScrollTrigger } from "@jurneyx2/react-lottie-hooks";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useState } from "react";
 
 export function LottieScrollExample() {
   const [externalPlayState, setExternalPlayState] = useState(false);
-  const [debugInfo, setDebugInfo] = useState(''); // 디버깅 정보
-  const [isManualControl, setIsManualControl] = useState(false); // 수동 제어 모드
+  const [debugInfo, setDebugInfo] = useState(""); // Debug information
+  const [isManualControl, setIsManualControl] = useState(false); // Manual control mode
 
-  // 성능 최적화된 훅 사용
+  // Performance optimized hook usage
   const {
     triggerRef,
     handleDotLottieRef,
     play,
     pause,
-    getIsPlaying, // ref 기반 getter 추가
+    getIsPlaying, // Add ref-based getter
     isLoaded,
     isClient,
     isDOMReady,
-    dotLottie, // DotLottie 인스턴스에 직접 접근
+    dotLottie, // Direct access to DotLottie instance
   } = useLottieScrollTrigger({
-    start: 'top center',
-    end: 'bottom center',
-    debug: false, // React Router에서는 일반적으로 false
-    debugLanguage: 'ko',
-    markers: false, // React Router에서는 일반적으로 false
+    start: "top center",
+    end: "bottom center",
+    debug: false, // Generally false in React Router
+    debugLanguage: "ko",
+    markers: false, // Generally false in React Router
 
-    // 성능 최적화: 콜백으로 상태 동기화
+    // Performance optimization: State synchronization via callbacks
     onPlayStateChange: (isPlaying) => {
-      console.log('재생 상태 변경:', isPlaying);
+      console.log("Play state changed:", isPlaying);
       setExternalPlayState(isPlaying);
       setDebugInfo(
         `onPlayStateChange: ${
-          isPlaying ? '재생' : '일시정지'
+          isPlaying ? "Playing" : "Paused"
         } (${new Date().toLocaleTimeString()})`
       );
     },
 
-    // 스크롤 이벤트 (수동 제어 모드가 아닐 때만 작동)
+    // Scroll events (only works when not in manual control mode)
     onEnter: (dotLottie) => {
-      console.log('애니메이션 영역 진입!');
+      console.log("Entered animation area!");
       if (!isManualControl) {
         dotLottie.play();
       }
-      // onPlayStateChange 콜백에서 자동으로 setExternalPlayState(true) 호출됨
+      // setExternalPlayState(true) automatically called by onPlayStateChange callback
     },
     onLeave: (dotLottie) => {
-      console.log('애니메이션 영역 벗어남!');
+      console.log("Left animation area!");
       if (!isManualControl) {
         dotLottie.pause();
       }
-      // onPlayStateChange 콜백에서 자동으로 setExternalPlayState(false) 호출됨
+      // setExternalPlayState(false) automatically called by onPlayStateChange callback
     },
   });
 
   const handlePlayToggle = () => {
-    // 수동 제어 모드 활성화
+    // Activate manual control mode
     setIsManualControl(true);
 
-    // ref 기반으로 현재 상태를 정확히 확인 (리랜더링 없음)
+    // Check current state accurately via ref (no re-rendering)
     const currentPlayState = getIsPlaying();
     const dotLottieNativeState = dotLottie?.isPlaying || false;
 
-    console.log('🔍 상태 확인:', {
+    console.log("🔍 State check:", {
       refState: currentPlayState,
       dotLottieNative: dotLottieNativeState,
       externalState: externalPlayState,
@@ -70,74 +70,75 @@ export function LottieScrollExample() {
     });
 
     if (currentPlayState) {
-      console.log('⏸️ 일시정지 명령 실행 (수동 제어)');
+      console.log("⏸️ Execute pause command (manual control)");
       pause();
     } else {
-      console.log('▶️ 재생 명령 실행 (수동 제어)');
+      console.log("▶️ Execute play command (manual control)");
       play();
     }
 
-    // 3초 후 자동 제어 모드로 복원 (선택사항)
+    // Restore to auto control mode after 3 seconds (optional)
     setTimeout(() => {
       setIsManualControl(false);
-      console.log('🔄 자동 제어 모드로 복원');
+      console.log("🔄 Restored to auto control mode");
     }, 3000);
 
-    // 상태 업데이트는 onPlayStateChange 콜백에서 자동으로 처리됨
+    // State update is automatically handled by onPlayStateChange callback
   };
 
-  // 자동 제어 모드로 복원하는 함수
+  // Function to restore to auto control mode
   const handleAutoMode = () => {
     setIsManualControl(false);
-    console.log('🔄 자동 제어 모드로 수동 복원');
+    console.log("🔄 Manually restored to auto control mode");
     setDebugInfo(
-      `자동 제어 모드로 복원됨 (${new Date().toLocaleTimeString()})`
+      `Restored to auto control mode (${new Date().toLocaleTimeString()})`
     );
   };
 
-  // 직접 DotLottie 상태 확인 함수
+  // Function to check DotLottie state directly
   const handleDirectCheck = () => {
     if (dotLottie) {
       const nativeState = dotLottie.isPlaying;
       const refState = getIsPlaying();
       alert(
-        `DotLottie 직접 확인:\n- Native: ${nativeState}\n- Ref: ${refState}\n- External: ${externalPlayState}`
+        `Direct DotLottie check:\n- Native: ${nativeState}\n- Ref: ${refState}\n- External: ${externalPlayState}`
       );
     }
   };
 
-  // SSR 안전성 체크
+  // SSR safety check
   if (!isClient || !isDOMReady) {
     return (
       <div className="min-h-screen w-screen flex items-center justify-center">
-        <div className="text-xl text-gray-600">로딩 중...</div>
+        <div className="text-xl text-gray-600">Loading...</div>
       </div>
     );
   }
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-b from-blue-50 to-purple-50">
-      {/* 헤더 섹션 */}
+      {/* Header section */}
       <div className="h-screen flex flex-col items-center justify-center">
         <h1 className="text-5xl md:text-3xl font-bold text-center mb-8 text-gray-800">
           React Lottie Hooks v1.2
         </h1>
         <p className="text-xl md:text-base text-gray-600 text-center mb-8 max-w-3xl md:px-4">
-          React Router에서 성능 최적화된 DotLottie 전용 스크롤 기반 애니메이션
-          훅
+          Performance optimized DotLottie-only scroll-based animation hook for
+          React Router
         </p>
         <div className="mt-8 text-center text-gray-500">
-          ⬇️ 아래로 스크롤하여 애니메이션을 확인하세요
+          ⬇️ Scroll down to see the animation
         </div>
       </div>
 
-      {/* 애니메이션 섹션 */}
+      {/* Animation section */}
       <div
         ref={triggerRef}
-        className="h-screen flex items-center justify-center bg-white">
+        className="h-screen flex items-center justify-center bg-white"
+      >
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-8 text-gray-800">
-            성능 최적화된 DotLottie 애니메이션
+            Performance Optimized DotLottie Animation
           </h2>
 
           <div className="w-80 h-80 md:w-64 md:h-64 mx-auto mb-8 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
@@ -150,79 +151,85 @@ export function LottieScrollExample() {
             />
           </div>
 
-          {/* 제어 버튼 */}
+          {/* Control buttons */}
           <div className="flex md:flex-col justify-center gap-4 md:gap-2 md:items-center mb-8">
             <button
               onClick={handlePlayToggle}
               className="px-4 py-2 md:w-48 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-              disabled={!isLoaded}>
-              {externalPlayState ? '⏸️ 일시정지' : '▶️ 재생'}
+              disabled={!isLoaded}
+            >
+              {externalPlayState ? "⏸️ Pause" : "▶️ Play"}
             </button>
 
             <button
               onClick={handleAutoMode}
               className={`px-4 py-2 md:w-48 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors disabled:opacity-50 font-medium ${
                 isManualControl
-                  ? 'bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  ? "bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-500"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
-              disabled={!isLoaded || !isManualControl}>
-              🔄 자동 모드
+              disabled={!isLoaded || !isManualControl}
+            >
+              🔄 Auto Mode
             </button>
 
             <button
               onClick={handleDirectCheck}
               className="px-4 py-2 md:w-48 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-              disabled={!isLoaded}>
-              🔍 상태 확인
+              disabled={!isLoaded}
+            >
+              🔍 Check State
             </button>
           </div>
 
-          {/* 상태 정보 */}
+          {/* Status information */}
           <div className="grid grid-cols-2 md:grid-cols-1 gap-4 max-w-md md:max-w-xs mx-auto mb-6">
             <div className="bg-gray-100 p-4 rounded-lg">
-              <div className="text-sm text-gray-600 mb-1">로드 상태</div>
+              <div className="text-sm text-gray-600 mb-1">Load Status</div>
               <div
                 className={`text-lg font-medium ${
-                  isLoaded ? 'text-green-600' : 'text-orange-600'
-                }`}>
-                {isLoaded ? '✅ 로드됨' : '⏳ 로딩 중...'}
+                  isLoaded ? "text-green-600" : "text-orange-600"
+                }`}
+              >
+                {isLoaded ? "✅ Loaded" : "⏳ Loading..."}
               </div>
             </div>
 
             <div className="bg-gray-100 p-4 rounded-lg">
-              <div className="text-sm text-gray-600 mb-1">재생 상태</div>
+              <div className="text-sm text-gray-600 mb-1">Play Status</div>
               <div
                 className={`text-lg font-medium ${
-                  externalPlayState ? 'text-green-600' : 'text-gray-600'
-                }`}>
-                {externalPlayState ? '▶️ 재생 중' : '⏸️ 일시정지'}
+                  externalPlayState ? "text-green-600" : "text-gray-600"
+                }`}
+              >
+                {externalPlayState ? "▶️ Playing" : "⏸️ Paused"}
               </div>
             </div>
 
             <div className="bg-gray-100 p-4 rounded-lg">
-              <div className="text-sm text-gray-600 mb-1">현재 프레임</div>
+              <div className="text-sm text-gray-600 mb-1">Current Frame</div>
               <div className="text-lg font-medium text-blue-600">
-                🎬 최적화됨
+                🎬 Optimized
               </div>
             </div>
 
             <div className="bg-gray-100 p-4 rounded-lg">
-              <div className="text-sm text-gray-600 mb-1">제어 모드</div>
+              <div className="text-sm text-gray-600 mb-1">Control Mode</div>
               <div
                 className={`text-lg font-medium ${
-                  isManualControl ? 'text-orange-600' : 'text-blue-600'
-                }`}>
-                {isManualControl ? '🔧 수동 제어' : '🤖 자동 제어'}
+                  isManualControl ? "text-orange-600" : "text-blue-600"
+                }`}
+              >
+                {isManualControl ? "🔧 Manual Control" : "🤖 Auto Control"}
               </div>
             </div>
           </div>
 
-          {/* 디버깅 정보 */}
+          {/* Debug information */}
           {debugInfo && (
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6 max-w-2xl mx-auto">
               <div className="text-sm text-yellow-800 font-medium mb-1">
-                디버그 정보
+                Debug Info
               </div>
               <div className="text-sm text-yellow-700">{debugInfo}</div>
             </div>
@@ -230,33 +237,35 @@ export function LottieScrollExample() {
 
           <div className="mt-8 text-sm text-gray-500 max-w-2xl mx-auto">
             <p className="mb-2">
-              ⚡ <strong>성능 최적화:</strong> 기본값으로 React state 추적
-              비활성화
+              ⚡ <strong>Performance Optimization:</strong> React state tracking
+              disabled by default
             </p>
             <p className="mb-2">
-              📊 <strong>스크롤 기반:</strong> 자동 애니메이션 제어
+              📊 <strong>Scroll-based:</strong> Automatic animation control
             </p>
             <p className="mb-2">
-              🎯 <strong>수동 상태 관리:</strong> 필요할 때만 외부 상태 업데이트
+              🎯 <strong>Manual State Management:</strong> External state update
+              only when needed
             </p>
             <p className="text-orange-600">
-              🔧 <strong>수동/자동 제어:</strong> 버튼 클릭 시 3초간 수동 모드
+              🔧 <strong>Manual/Auto Control:</strong> 3-second manual mode on
+              button click
             </p>
           </div>
         </div>
       </div>
 
-      {/* 추가 콘텐츠 */}
+      {/* Additional content */}
       <div className="h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-4 text-gray-800">
-            스크롤 기반 제어
+            Scroll-based Control
           </h2>
           <p className="text-lg text-gray-600">
-            스크롤 위치에 따라 애니메이션이 자동으로 제어됩니다.
+            Animation is automatically controlled based on scroll position.
           </p>
           <p className="text-md text-gray-500 mt-4">
-            React Router + DotLottie + GSAP ScrollTrigger 구현
+            React Router + DotLottie + GSAP ScrollTrigger Implementation
           </p>
         </div>
       </div>
